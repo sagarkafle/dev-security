@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="D3vS1m.Application" Version="1.0.1" />
+    <PackageReference Include="D3vS1m.Domain" Version="1.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="Sin.Net.Logging" Version="0.3.0" />
+    <PackageReference Include="Sin.Net.Persistence" Version="0.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="D3vS1m.Persistence">
+      <HintPath>..\..\..\d3vs1m\src\D3vS1m.Persistence\bin\Debug\netstandard2.0\D3vS1m.Persistence.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

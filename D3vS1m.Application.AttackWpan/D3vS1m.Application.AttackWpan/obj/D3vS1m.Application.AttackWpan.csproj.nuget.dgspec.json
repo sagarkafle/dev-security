@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj": {}
+    "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj": {
+    "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
+        "projectUniqueName": "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
         "projectName": "D3vS1m.Application.AttackWpan",
-        "projectPath": "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
+        "projectPath": "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
         "packagesPath": "C:\\Users\\nepho\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\obj\\",
+        "outputPath": "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nepho\\AppData\\Roaming\\NuGet\\NuGet.Config",
