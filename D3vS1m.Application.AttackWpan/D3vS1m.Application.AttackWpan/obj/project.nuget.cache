@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "3VNWZOqfUz/y2+MAAsp6gxUcga/E/In5mRwuNu/bjfYvPunSe44y2s+QQ97gU+ghbPbA6DdI7zKtXIXMnr4gkg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.application\\1.0.1\\d3vs1m.application.1.0.1.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.domain\\1.0.1\\d3vs1m.domain.1.0.1.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\fluentvalidation\\9.0.0\\fluentvalidation.9.0.0.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\sin.net.domain\\0.3.0\\sin.net.domain.0.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

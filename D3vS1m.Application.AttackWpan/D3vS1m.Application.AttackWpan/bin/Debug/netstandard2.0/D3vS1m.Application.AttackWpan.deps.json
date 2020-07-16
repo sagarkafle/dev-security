@@ -1,0 +1,115 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "D3vS1m.Application.AttackWpan/1.0.0": {
+        "dependencies": {
+          "D3vS1m.Application": "1.0.1",
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "D3vS1m.Application.AttackWpan.dll": {}
+        }
+      },
+      "D3vS1m.Application/1.0.1": {
+        "dependencies": {
+          "D3vS1m.Domain": "1.0.1",
+          "FluentValidation": "9.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/D3vS1m.Application.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
+      },
+      "D3vS1m.Domain/1.0.1": {
+        "dependencies": {
+          "Sin.Net.Domain": "0.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/D3vS1m.Domain.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
+      },
+      "FluentValidation/9.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Sin.Net.Domain/0.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/Sin.Net.Domain.dll": {
+            "assemblyVersion": "0.3.0.0",
+            "fileVersion": "0.3.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "D3vS1m.Application.AttackWpan/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "D3vS1m.Application/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6PHCz5MPXbx0F+CzUAzBz2CAaQ1/SVOpZM1aPei565hLowx9zn7HIjcUqNmEE2BG7mMxBPnngcWhpBbvzahW0A==",
+      "path": "d3vs1m.application/1.0.1",
+      "hashPath": "d3vs1m.application.1.0.1.nupkg.sha512"
+    },
+    "D3vS1m.Domain/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-64qwWwXv/1n+tvhVBSGQnsOEutCoTrJR1CHMazyhJ9KZhe3MYN3/E3Tn7OzLNlA2uQeUwTuhBJnd9RE5ScSBbg==",
+      "path": "d3vs1m.domain/1.0.1",
+      "hashPath": "d3vs1m.domain.1.0.1.nupkg.sha512"
+    },
+    "FluentValidation/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2SPrOW660J7v56AC2Wd4MqdiXOoEUPf72J2yMx2F3y6Ylw5pvuYrbjI435wimdTCleGgssgsdTwUJHc72dkTMw==",
+      "path": "fluentvalidation/9.0.0",
+      "hashPath": "fluentvalidation.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "Sin.Net.Domain/0.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3R1mc5EAJ+AkIviQGXEbJPD8OVKhQcBGhXkMEfkzdDRo1ltN/KKP4wSaGk3ke7Wxgi73OpQLRaonpxnltkNW4Q==",
+      "path": "sin.net.domain/0.3.0",
+      "hashPath": "sin.net.domain.0.3.0.nupkg.sha512"
+    }
+  }
+}

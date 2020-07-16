@@ -1,0 +1,5 @@
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan\bin\Debug\netstandard2.0\D3vS1m.Application.AttackWpan.deps.json
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan\bin\Debug\netstandard2.0\D3vS1m.Application.AttackWpan.dll
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan\obj\Debug\netstandard2.0\D3vS1m.Application.AttackWpan.csprojAssemblyReference.cache
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan\obj\Debug\netstandard2.0\D3vS1m.Application.AttackWpan.AssemblyInfoInputs.cache
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan\obj\Debug\netstandard2.0\D3vS1m.Application.AttackWpan.AssemblyInfo.cs
