@@ -1,4 +1,5 @@
 ﻿using D3vS1m.Application.Antenna;
+using D3vS1m.Application.AttackWpan;
 using D3vS1m.Application.Channel;
 using D3vS1m.Application.Data;
 using D3vS1m.Application.Devices;

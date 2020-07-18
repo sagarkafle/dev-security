@@ -15,7 +15,10 @@ namespace D3vS1m.Application.AttackWpan
         private AttackWpanArgs _args;
 
         // -- constructor
-
+        public AttackWpanSimpleSimulator() : this(null)
+        {
+            
+        }
         public AttackWpanSimpleSimulator(RuntimeBase runtime) : base(runtime)
         {
 
@@ -32,6 +35,10 @@ namespace D3vS1m.Application.AttackWpan
         public override void Run()
         {
             base.BeforeExecution();
+
+            
+            //Simulation logic goes here
+
 
             base.AfterExecution();
         }

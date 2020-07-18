@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,6 +15,10 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
     <PackageReference Include="Sin.Net.Logging" Version="0.3.0" />
     <PackageReference Include="Sin.Net.Persistence" Version="0.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.csproj" />
   </ItemGroup>
 
   <ItemGroup>

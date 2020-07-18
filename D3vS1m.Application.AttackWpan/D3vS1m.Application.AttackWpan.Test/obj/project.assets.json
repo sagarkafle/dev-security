@@ -1622,6 +1622,20 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "D3vS1m.Application.AttackWpan/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "D3vS1m.Application": "1.0.1",
+          "D3vS1m.Domain": "1.0.1"
+        },
+        "compile": {
+          "bin/placeholder/D3vS1m.Application.AttackWpan.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/D3vS1m.Application.AttackWpan.dll": {}
+        }
       }
     }
   },
@@ -5614,11 +5628,17 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "D3vS1m.Application.AttackWpan/1.0.0": {
+      "type": "project",
+      "path": "../D3vS1m.Application.AttackWpan/D3vS1m.Application.AttackWpan.csproj",
+      "msbuildProject": "../D3vS1m.Application.AttackWpan/D3vS1m.Application.AttackWpan.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "D3vS1m.Application >= 1.0.1",
+      "D3vS1m.Application.AttackWpan >= 1.0.0",
       "D3vS1m.Domain >= 1.0.1",
       "MSTest.TestAdapter >= 2.1.0",
       "MSTest.TestFramework >= 2.1.0",
@@ -5653,7 +5673,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj": {
+              "projectPath": "C:\\Users\\nepho\\Source\\Repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
