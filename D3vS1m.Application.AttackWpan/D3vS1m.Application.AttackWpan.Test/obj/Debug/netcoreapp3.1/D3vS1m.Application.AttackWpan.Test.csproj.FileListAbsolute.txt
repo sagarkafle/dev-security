@@ -101,3 +101,6 @@ C:\Users\nepho\Source\Repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Ap
 C:\Users\nepho\Source\Repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.csproj.CoreCompileInputs.cache
 C:\Users\nepho\Source\Repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.dll
 C:\Users\nepho\Source\Repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.pdb
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\testhost.exe
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.dll
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.pdb

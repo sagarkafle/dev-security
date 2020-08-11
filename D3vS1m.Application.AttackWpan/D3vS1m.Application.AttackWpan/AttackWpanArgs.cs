@@ -17,5 +17,9 @@ namespace D3vS1m.Application.AttackWpan
             throw new NotImplementedException();
         }
 
+
+        // -- properties
+
+        public int Counter { get; set; }
     }
 }

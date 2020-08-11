@@ -36,8 +36,10 @@ namespace D3vS1m.Application.AttackWpan
         {
             base.BeforeExecution();
 
-            
+
             //Simulation logic goes here
+
+            _args.Counter++;
 
 
             base.AfterExecution();
