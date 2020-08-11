@@ -1627,8 +1627,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "D3vS1m.Application": "1.0.1",
-          "D3vS1m.Domain": "1.0.1"
+          "D3vS1m.Application": "1.0.2",
+          "D3vS1m.Domain": "1.0.2"
         },
         "compile": {
           "bin/placeholder/D3vS1m.Application.AttackWpan.dll": {}

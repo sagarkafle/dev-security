@@ -2,6 +2,7 @@
 using D3vS1m.Domain.Runtime;
 using D3vS1m.Domain.Simulation;
 using D3vS1m.Domain.System.Enumerations;
+using Sin.Net.Domain.Persistence.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,7 @@ namespace D3vS1m.Application.AttackWpan
         // -- constructor
         public AttackWpanSimpleSimulator() : this(null)
         {
-            
+
         }
         public AttackWpanSimpleSimulator(RuntimeBase runtime) : base(runtime)
         {
@@ -36,21 +37,19 @@ namespace D3vS1m.Application.AttackWpan
         {
             base.BeforeExecution();
 
-
-            //Simulation logic goes here
-
             _args.Counter++;
-
 
             base.AfterExecution();
         }
 
         // -- properties
 
-       
-        public override string Id => AttackWpanModule.AttackInWpan.Name;
+
         public override string Name => AttackWpanModule.AttackInWpan.Name;
         public override SimulationTypes Type => SimulationTypes.Custom;
         public override ArgumentsBase Arguments => _args;
+
+        public override string Key => AttackWpanModule.AttackInWpan.Name;
+
     }
 }

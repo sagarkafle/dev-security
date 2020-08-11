@@ -43,17 +43,19 @@ namespace D3vS1m.Application.AttackWpan.Test
 			{
 				Log.Info("Simulation done");
 			};
-
+			
 			// act
 			simulator
 				.With(args)
 				.Run();
 
 			// assert
-			Assert.IsTrue(args.Counter > 0, "The counter should be greater than zero.");
+			Log.Info($"Counter Value='{ args.Counter}'.");
+			//Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
+			Assert.IsTrue(args.Counter > 0, $"The counter should be greater than zero");
 		}
 
-		[TestMethod]
+		//[TestMethod]
 		public async Task RunAttackSimulatorWithRuntime()
 		{
 			// arrange
@@ -93,11 +95,13 @@ namespace D3vS1m.Application.AttackWpan.Test
 			};
 			simulator.Executed += (o, e) =>
 			{
-				Log.Info("Simulation done");
+				Log.Info($"Simulation done.");
 			};
 
-			// act
-			if (runtime.Validate() == false)
+            // act
+            
+
+            if (runtime.Validate() == false)
 			{
 				throw new RuntimeException("The runtime validation failed.");
 			}

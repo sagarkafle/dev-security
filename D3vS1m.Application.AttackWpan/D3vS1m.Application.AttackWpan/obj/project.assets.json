@@ -2,11 +2,11 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "D3vS1m.Application/1.0.1": {
+      "D3vS1m.Application/1.0.2": {
         "type": "package",
         "dependencies": {
-          "D3vS1m.Domain": "1.0.1",
-          "FluentValidation": "9.0.0"
+          "D3vS1m.Domain": "1.0.2",
+          "FluentValidation": "9.0.1"
         },
         "compile": {
           "lib/netstandard2.0/D3vS1m.Application.dll": {}
@@ -15,10 +15,10 @@
           "lib/netstandard2.0/D3vS1m.Application.dll": {}
         }
       },
-      "D3vS1m.Domain/1.0.1": {
+      "D3vS1m.Domain/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Sin.Net.Domain": "0.3.0"
+          "Sin.Net.Domain": "0.3.2"
         },
         "compile": {
           "lib/netstandard2.0/D3vS1m.Domain.dll": {}
@@ -27,7 +27,7 @@
           "lib/netstandard2.0/D3vS1m.Domain.dll": {}
         }
       },
-      "FluentValidation/9.0.0": {
+      "FluentValidation/9.0.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FluentValidation.dll": {}
@@ -60,7 +60,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Sin.Net.Domain/0.3.0": {
+      "Sin.Net.Domain/0.3.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Sin.Net.Domain.dll": {}
@@ -72,42 +72,42 @@
     }
   },
   "libraries": {
-    "D3vS1m.Application/1.0.1": {
-      "sha512": "6PHCz5MPXbx0F+CzUAzBz2CAaQ1/SVOpZM1aPei565hLowx9zn7HIjcUqNmEE2BG7mMxBPnngcWhpBbvzahW0A==",
+    "D3vS1m.Application/1.0.2": {
+      "sha512": "Ut/T7y8n75+Y/CBA8IudXIQe+7CbV8wf6VFVlwjSx4JaKtiVsUdpX3XgwKwuNAtSBhaDzaWCkxxL91M3cvbKuw==",
       "type": "package",
-      "path": "d3vs1m.application/1.0.1",
+      "path": "d3vs1m.application/1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "d3vs1m-logo-v2.png",
-        "d3vs1m.application.1.0.1.nupkg.sha512",
+        "d3vs1m.application.1.0.2.nupkg.sha512",
         "d3vs1m.application.nuspec",
         "lib/netstandard2.0/D3vS1m.Application.dll"
       ]
     },
-    "D3vS1m.Domain/1.0.1": {
-      "sha512": "64qwWwXv/1n+tvhVBSGQnsOEutCoTrJR1CHMazyhJ9KZhe3MYN3/E3Tn7OzLNlA2uQeUwTuhBJnd9RE5ScSBbg==",
+    "D3vS1m.Domain/1.0.2": {
+      "sha512": "m60rTzQCs/lDxwlmXonuRhsV1s+mQbMpaDlxtjB7oqN+VwUJAactgQ++zJy3opEZGRrY6eXsIYcWDUx6nbuCDg==",
       "type": "package",
-      "path": "d3vs1m.domain/1.0.1",
+      "path": "d3vs1m.domain/1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "d3vs1m-logo-v2.png",
-        "d3vs1m.domain.1.0.1.nupkg.sha512",
+        "d3vs1m.domain.1.0.2.nupkg.sha512",
         "d3vs1m.domain.nuspec",
         "lib/netstandard2.0/D3vS1m.Domain.dll"
       ]
     },
-    "FluentValidation/9.0.0": {
-      "sha512": "2SPrOW660J7v56AC2Wd4MqdiXOoEUPf72J2yMx2F3y6Ylw5pvuYrbjI435wimdTCleGgssgsdTwUJHc72dkTMw==",
+    "FluentValidation/9.0.1": {
+      "sha512": "GeF+cPknUFFJ5FkCybmQShaXWwJowBuJozgns6In37wiP2zOWx+kdNPBAN9BlDyhcORdxtXeGnkLZ+OFT85onQ==",
       "type": "package",
-      "path": "fluentvalidation/9.0.0",
+      "path": "fluentvalidation/9.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "fluentvalidation.9.0.0.nupkg.sha512",
+        "fluentvalidation.9.0.1.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net461/FluentValidation.dll",
         "lib/net461/FluentValidation.xml",
@@ -259,23 +259,25 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Sin.Net.Domain/0.3.0": {
-      "sha512": "3R1mc5EAJ+AkIviQGXEbJPD8OVKhQcBGhXkMEfkzdDRo1ltN/KKP4wSaGk3ke7Wxgi73OpQLRaonpxnltkNW4Q==",
+    "Sin.Net.Domain/0.3.2": {
+      "sha512": "qXqAKFlGJYhiY4EYMLZQTF7CwjsTzosk1qIyfQxlGw1RlKsA6I5S3fMCkmr9/SHJQ1xnil2BJUmC7NqDsS1vww==",
       "type": "package",
-      "path": "sin.net.domain/0.3.0",
+      "path": "sin.net.domain/0.3.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "LICENSE",
+        "Sin.Net.Logo.small.png",
         "lib/netstandard2.0/Sin.Net.Domain.dll",
-        "sin.net.domain.0.3.0.nupkg.sha512",
+        "sin.net.domain.0.3.2.nupkg.sha512",
         "sin.net.domain.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "D3vS1m.Application >= 1.0.1",
-      "D3vS1m.Domain >= 1.0.1",
+      "D3vS1m.Application >= 1.0.2",
+      "D3vS1m.Domain >= 1.0.2",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -318,11 +320,11 @@
         "dependencies": {
           "D3vS1m.Application": {
             "target": "Package",
-            "version": "[1.0.1, )"
+            "version": "[1.0.2, )"
           },
           "D3vS1m.Domain": {
             "target": "Package",
-            "version": "[1.0.1, )"
+            "version": "[1.0.2, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",

@@ -14,9 +14,7 @@ namespace D3vS1m.Application.AttackWpan
         public override void Reset()
         {
             Name = AttackWpanModule.AttackInWpan.Name;
-            throw new NotImplementedException();
         }
-
 
         // -- properties
 
