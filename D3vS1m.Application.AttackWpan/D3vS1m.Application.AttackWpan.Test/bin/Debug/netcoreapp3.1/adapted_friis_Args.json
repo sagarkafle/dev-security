@@ -1,0 +1,30 @@
+{
+  "Guid": "58502295-bd11-4731-8cc4-4956b07443d9",
+  "Name": "adapted friis transmission",
+  "AttenuationExponent": 1.25,
+  "AttenuationOffset": 0.0,
+  "UseObstacles": false,
+  "RadioBox": {
+    "MinCorner": {
+      "X": -10.0,
+      "Y": -10.0,
+      "Z": -10.0,
+      "Length": 17.320509
+    },
+    "MaxCorner": {
+      "X": 10.0,
+      "Y": 10.0,
+      "Z": 10.0,
+      "Length": 17.320509
+    },
+    "Resolution": 0.25,
+    "DataDimension": null,
+    "TotalData": 0
+  },
+  "RxPositions": null,
+  "RxValues": null,
+  "RxColors": null,
+  "Key": "aft",
+  "Active": true,
+  "Index": -1
+}

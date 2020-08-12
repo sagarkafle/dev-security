@@ -15,6 +15,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 	[TestClass]
 	public class SimpleTest : TestBase
 	{
+		private PeerToPeerNetwork _network;
 
 		[TestInitialize]
 		public override void Arrange()
@@ -28,7 +29,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			base.Cleanup();
 		}
 
-		[TestMethod]
+		//[TestMethod]
 		public void RunAttackSimulator()
 		{
 			// arrange
@@ -50,13 +51,13 @@ namespace D3vS1m.Application.AttackWpan.Test
 				.Run();
 
 			// assert
-			Log.Info($"Counter Value='{ args.Counter}'.");
+			//Log.Info($"Counter Value='{ args.Counter}'.");
 			//Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
 			Assert.IsTrue(args.Counter > 0, $"The counter should be greater than zero");
 		}
 
-		//[TestMethod]
-		public async Task RunAttackSimulatorWithRuntime()
+        [TestMethod]
+        public async Task RunAttackSimulatorWithRuntime()
 		{
 			// arrange
 			var iternations = 3;
@@ -73,13 +74,31 @@ namespace D3vS1m.Application.AttackWpan.Test
 			 * - Add all arguments you need to your simulator with the With() method
 			 * - Create a break condition to end the simulation runtime
 			 */
-			var radioArgs = new AdaptedFriisArgs();
+			//var radioArgs = new AdaptedFriisArgs();
+			
+			var radioArgs = base.GetRadioArgs();
 			radioArgs.AttenuationOffset = 2;
 
-			repo.Add(new PeerToPeerNetworkSimulator(runtime)
-				.With(new NetworkArgs())
+
+
+			var netSim = new PeerToPeerNetworkSimulator(runtime);
+			var netArgs = new NetworkArgs();
+            //var radioChannelSimulator = new AdaptedFriisSimulator(runtime);
+            //var radioChannelSimulator = new AdaptedFriisSimulator();
+            //netSim.OnExecuting += (o, e) =>
+            //{
+            //	_network.AssociationMatrix.Each(ApplyAssociations);
+            //};
+            netSim.With(netArgs);
+            _network = netArgs.Network;
+            _network.AddRange(ImportDevices().ToArray());
+
+			Log.Info($"Before--");
+			repo.Add(netSim
 				.With(radioArgs));
-			repo.Add(new AdaptedFriisSimulator(runtime).With(radioArgs));
+			Log.Info($"--After");
+			//repo.Add(radioChannelSimulator.With(radioArgs));
+			//repo.Add(radioChannelSimulator.With(radioArgs));
 
 			runtime.BindSimulators(repo);
 			runtime.IterationPassed += (o, e) =>
@@ -107,7 +126,9 @@ namespace D3vS1m.Application.AttackWpan.Test
 			}
 			await runtime.RunAsync(iternations);
 
+
 			// assert
+			Log.Info($"Counter Value='{ args.Counter}'.");
 			Assert.IsNotNull(args, "The argument should not be null");
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
 			Assert.IsTrue(args.Counter > 0, "The counter should be greater than zero.");
