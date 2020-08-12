@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using D3vS1m.Application.Channel;
+using D3vS1m.Application.Communication;
+using D3vS1m.Application.Energy;
 using D3vS1m.Application.Network;
 using D3vS1m.Application.Runtime;
+using D3vS1m.Application.Scene;
 using D3vS1m.Application.Validation;
 using D3vS1m.Domain.Runtime;
 using D3vS1m.Domain.Simulation;
@@ -16,6 +19,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 	public class SimpleTest : TestBase
 	{
 		private PeerToPeerNetwork _network;
+		//private BatteryPack _battery;
 
 		[TestInitialize]
 		public override void Arrange()
@@ -68,42 +72,66 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var simulator = repo.Add(new AttackWpanSimpleSimulator()
 				.With(new AttackWpanArgs()));
 
-			/*
+            /*
 			 * TODO: add more simulators and run the simualtion
 			 * - You need: Network, Devices, Energy, Radio Channel
 			 * - Add all arguments you need to your simulator with the With() method
 			 * - Create a break condition to end the simulation runtime
 			 */
-			//var radioArgs = new AdaptedFriisArgs();
-			
-			var radioArgs = base.GetRadioArgs();
-			radioArgs.AttenuationOffset = 2;
+            
+			//Initialization of network simulator
 
-
-
-			var netSim = new PeerToPeerNetworkSimulator(runtime);
+			var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
 			var netArgs = new NetworkArgs();
-            //var radioChannelSimulator = new AdaptedFriisSimulator(runtime);
-            //var radioChannelSimulator = new AdaptedFriisSimulator();
-            //netSim.OnExecuting += (o, e) =>
-            //{
-            //	_network.AssociationMatrix.Each(ApplyAssociations);
-            //};
-            netSim.With(netArgs);
-            _network = netArgs.Network;
-            _network.AddRange(ImportDevices().ToArray());
 
+			//Added necessary argument to network simulator
+			networkSimulator.With(netArgs);
+			_network = netArgs.Network;
+			_network.AddRange(ImportDevices().ToArray());
+
+			//Radio channel simualtor
+			// arrange
+			var comArgs = new WirelessCommArgs();
+			var radioArgs = base.GetRadioArgs();
+			var sceneArgs = new InvariantSceneArgs();
+
+			//Added necessary argument to radio channel simulator
+			var radioChannelSimulator = new AdaptedFriisSimulator(runtime)
+				.With(radioArgs)                    // own arguments
+				.With(comArgs)                      // additional arguments...
+				.With(sceneArgs)
+				.With(netArgs);                     // false positive
+
+			//Battery simulation initialization
+			//_battery = new BatteryPack();
+			//_battery.CutoffVoltage = 1.2F;
+   //         _battery.State.Init(_battery);
+   //         BatteryState s = _battery.State;
+
+   //         var batteryArgs = new BatteryArgs();
+   //         batteryArgs.Batteries.Add(_battery);
+
+            //var batterySim = new BatteryPackSimulator();
+            //batterySim
+            //  .With(batteryArgs)
+            //  .With(runtime.Arguments);
+
+
+			//Adding different simulator to the main repo
 			Log.Info($"Before--");
-			repo.Add(netSim
-				.With(radioArgs));
-			Log.Info($"--After");
-			//repo.Add(radioChannelSimulator.With(radioArgs));
-			//repo.Add(radioChannelSimulator.With(radioArgs));
+
+            repo.Add(networkSimulator
+                .With(radioArgs));
+            repo.Add(radioChannelSimulator);
+
+            Log.Info($"--After");
+
 
 			runtime.BindSimulators(repo);
 			runtime.IterationPassed += (o, e) =>
 			{
 				passed++;
+				
 			};
 
 			var args = default(AttackWpanArgs);
@@ -130,6 +158,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			// assert
 			Log.Info($"Counter Value='{ args.Counter}'.");
 			Assert.IsNotNull(args, "The argument should not be null");
+
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
 			Assert.IsTrue(args.Counter > 0, "The counter should be greater than zero.");
 		}
