@@ -19,9 +19,9 @@ namespace D3vS1m.Application.AttackWpan.Test
 	public class SimpleTest : TestBase
 	{
 		private PeerToPeerNetwork _network;
-		//private BatteryPack _battery;
+        private BatteryPack _battery;
 
-		[TestInitialize]
+        [TestInitialize]
 		public override void Arrange()
 		{
 			base.Arrange();
@@ -84,7 +84,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
 			var netArgs = new NetworkArgs();
 
-			//Added necessary argument to network simulator
+			//Added necessary argument to network simulator#
 			networkSimulator.With(netArgs);
 			_network = netArgs.Network;
 			_network.AddRange(ImportDevices().ToArray());
@@ -102,27 +102,29 @@ namespace D3vS1m.Application.AttackWpan.Test
 				.With(sceneArgs)
 				.With(netArgs);                     // false positive
 
-			//Battery simulation initialization
-			//_battery = new BatteryPack();
-			//_battery.CutoffVoltage = 1.2F;
-   //         _battery.State.Init(_battery);
-   //         BatteryState s = _battery.State;
+            //Battery simulation initialization
+            _battery = new BatteryPack();
+            _battery.CutoffVoltage = 1.2F;
+            _battery.State.Init(_battery);
+            BatteryState s = _battery.State;
 
-   //         var batteryArgs = new BatteryArgs();
-   //         batteryArgs.Batteries.Add(_battery);
+            var batteryArgs = new BatteryArgs();
+            batteryArgs.Batteries.Add(_battery);
 
-            //var batterySim = new BatteryPackSimulator();
-            //batterySim
-            //  .With(batteryArgs)
-            //  .With(runtime.Arguments);
+            var batterySim = new BatteryPackSimulator();
+            batterySim
+              .With(batteryArgs).
+			  With(runtime.Arguments);
 
 
-			//Adding different simulator to the main repo
-			Log.Info($"Before--");
+            //Adding different simulator to the main repo
+            Log.Info($"Before--");
 
-            repo.Add(networkSimulator
+            repo.Add(networkSimulator.
+				With(batteryArgs)
                 .With(radioArgs));
             repo.Add(radioChannelSimulator);
+            repo.Add(batterySim);
 
             Log.Info($"--After");
 
