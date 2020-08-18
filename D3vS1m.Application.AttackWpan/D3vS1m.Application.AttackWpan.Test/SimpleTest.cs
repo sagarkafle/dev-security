@@ -90,17 +90,16 @@ namespace D3vS1m.Application.AttackWpan.Test
 			_network.AddRange(ImportDevices().ToArray());
 
 			//Radio channel simualtor
-			// arrange
 			var comArgs = new WirelessCommArgs();
 			var radioArgs = base.GetRadioArgs();
 			var sceneArgs = new InvariantSceneArgs();
 
 			//Added necessary argument to radio channel simulator
 			var radioChannelSimulator = new AdaptedFriisSimulator(runtime)
-				.With(radioArgs)                    // own arguments
-				.With(comArgs)                      // additional arguments...
+				.With(radioArgs)                   
+				.With(comArgs)                     
 				.With(sceneArgs)
-				.With(netArgs);                     // false positive
+				.With(netArgs);                     
 
             //Battery simulation initialization
             _battery = new BatteryPack();
