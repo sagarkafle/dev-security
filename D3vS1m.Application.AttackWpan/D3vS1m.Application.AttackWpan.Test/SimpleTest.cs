@@ -126,13 +126,16 @@ namespace D3vS1m.Application.AttackWpan.Test
 				var be = e.Arguments as BatteryArgs;
 				//be.Batteries[0].State.Now.Charge;
 				
-				Log.Info($"Initial Battery");
-				Log.Info(be.Batteries[0].State.Initial.Charge.ToString());
-				Log.Info(s.Initial.Charge.ToString());
-				
-				Log.Info($"Battery Charge Now");
-			    Log.Info(s.Now.Charge.ToString());
-				Log.Info(be.Batteries[0].State.Now.Charge.ToString());
+	
+				Log.Info($"Initial Charge '{be.Batteries[0].State.Initial.Charge}'.");
+				Log.Info($"Current Charge '{ be.Batteries[0].State.Now.Charge}'.");
+
+				Log.Info($"initial State of discharge '{ be.Batteries[0].State.Initial.SoD}'.");
+				Log.Info($"Current State of discharge '{ be.Batteries[0].State.Now.SoD}'.");
+
+				Log.Info($"Initial Volt '{be.Batteries[0].State.Initial.Voltage}'.");
+				Log.Info($"Current Volt '{ be.Batteries[0].State.Now.Voltage}'.");
+
 				
 				//be.Batteries[0].State.Initial.Charge;
 
