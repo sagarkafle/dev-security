@@ -72,13 +72,21 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var simulator = repo.Add(new AttackWpanSimpleSimulator()
 				.With(new AttackWpanArgs()));
 
-            /*
+
+
+			//Radio channel simualtor args
+			var comArgs = new WirelessCommArgs();
+			var radioArgs = base.GetRadioArgs();
+			var sceneArgs = new InvariantSceneArgs();
+
+
+			/*
 			 * TODO: add more simulators and run the simualtion
 			 * - You need: Network, Devices, Energy, Radio Channel
 			 * - Add all arguments you need to your simulator with the With() method
 			 * - Create a break condition to end the simulation runtime
 			 */
-            
+
 			//Initialization of network simulator
 
 			var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
@@ -86,13 +94,10 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 			//Added necessary argument to network simulator#
 			networkSimulator.With(netArgs);
+			//networkSimulator.With(netArgs).With(comArgs).With(radioArgs);
 			_network = netArgs.Network;
 			_network.AddRange(ImportDevices().ToArray());
 
-			//Radio channel simualtor
-			var comArgs = new WirelessCommArgs();
-			var radioArgs = base.GetRadioArgs();
-			var sceneArgs = new InvariantSceneArgs();
 
 			//Added necessary argument to radio channel simulator
 			var radioChannelSimulator = new AdaptedFriisSimulator(runtime)
@@ -110,14 +115,32 @@ namespace D3vS1m.Application.AttackWpan.Test
             var batteryArgs = new BatteryArgs();
             batteryArgs.Batteries.Add(_battery);
 
+
             var batterySim = new BatteryPackSimulator();
             batterySim
               .With(batteryArgs).
 			  With(runtime.Arguments);
+			
+			batterySim.Executed += (o, e) =>
+			{
+				var be = e.Arguments as BatteryArgs;
+				//be.Batteries[0].State.Now.Charge;
+				
+				Log.Info($"Initial Battery");
+				Log.Info(be.Batteries[0].State.Initial.Charge.ToString());
+				Log.Info(s.Initial.Charge.ToString());
+				
+				Log.Info($"Battery Charge Now");
+			    Log.Info(s.Now.Charge.ToString());
+				Log.Info(be.Batteries[0].State.Now.Charge.ToString());
+				
+				//be.Batteries[0].State.Initial.Charge;
+
+            };
 
 
             //Adding different simulator to the main repo
-            Log.Info($"Before--");
+            Log.Info($"Adding to repo--Start");
 
             repo.Add(networkSimulator.
 				With(batteryArgs)
@@ -125,7 +148,7 @@ namespace D3vS1m.Application.AttackWpan.Test
             repo.Add(radioChannelSimulator);
             repo.Add(batterySim);
 
-            Log.Info($"--After");
+			Log.Info($"Adding to repo--End");
 
 
 			runtime.BindSimulators(repo);
