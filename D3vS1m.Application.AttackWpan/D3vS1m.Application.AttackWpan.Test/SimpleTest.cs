@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using D3vS1m.Application.Channel;
 using D3vS1m.Application.Communication;
 using D3vS1m.Application.Energy;
+using D3vS1m.Application.Devices;
 using D3vS1m.Application.Network;
 using D3vS1m.Application.Runtime;
 using D3vS1m.Application.Scene;
@@ -38,6 +39,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 		{
 			// arrange
 			var args = new AttackWpanArgs();
+			
 			var simulator = new AttackWpanSimpleSimulator();
 			simulator.OnExecuting += (o, e) =>
 			{
@@ -64,13 +66,14 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
 			// arrange
-			var iternations = 3;
+			var iternations = 395;
 			var passed = 0;
+			var victimNodeName = "victimNode";
 
 			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
-			var simulator = repo.Add(new AttackWpanSimpleSimulator()
-				.With(new AttackWpanArgs()));
+			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
+			//	.With(new AttackWpanArgs()));
 
 
 
@@ -92,19 +95,18 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
 			var netArgs = new NetworkArgs();
 
-			//Added necessary argument to network simulator#
-			networkSimulator.With(netArgs);
-			//networkSimulator.With(netArgs).With(comArgs).With(radioArgs);
-			_network = netArgs.Network;
-			_network.AddRange(ImportDevices().ToArray());
+            //Added necessary argument to network simulator#
+            //networkSimulator.With(netArgs).With(comArgs).With(radioArgs);
+            networkSimulator.With(netArgs);
+            _network = netArgs.Network;
+            _network.AddRange(ImportDevices().ToArray());
 
 
-			//Added necessary argument to radio channel simulator
-			var radioChannelSimulator = new AdaptedFriisSimulator(runtime)
-				.With(radioArgs)                   
-				.With(comArgs)                     
-				.With(sceneArgs)
-				.With(netArgs);                     
+            //Added necessary argument to radio channel simulator (not that important, if required)
+            //var radioChannelSimulator = new AdaptedFriisSimulator(runtime)
+            //	.With(radioArgs)                   
+            //	.With(comArgs)                     
+            //	.With(netArgs);                     
 
             //Battery simulation initialization
             _battery = new BatteryPack();
@@ -112,29 +114,47 @@ namespace D3vS1m.Application.AttackWpan.Test
             _battery.State.Init(_battery);
             BatteryState s = _battery.State;
 
+            var testNetworkDevice = netArgs.Network;
+
             var batteryArgs = new BatteryArgs();
             batteryArgs.Batteries.Add(_battery);
 
+		
+			netArgs.Network.Items.ForEach(d =>
+			{
+				//var powerSupply = d.Parts.GetPowerSupply();
+				d.Parts.Add(_battery);
+			});
+			//var device = new SimpleDevice();
 
-            var batterySim = new BatteryPackSimulator();
-            batterySim
-              .With(batteryArgs).
-			  With(runtime.Arguments);
+			//device.Parts.Add(_battery);
+			//netArgs.Network.Add(device);
 			
+			
+
+
+			var batterySim = new BatteryPackSimulator();
+            batterySim
+              .With(batteryArgs)
+			  .With(netArgs).
+			  With(runtime.Arguments);
+
+
+
 			batterySim.Executed += (o, e) =>
 			{
 				var be = e.Arguments as BatteryArgs;
 				//be.Batteries[0].State.Now.Charge;
 				
 	
-				Log.Info($"Initial Charge '{be.Batteries[0].State.Initial.Charge}'.");
-				Log.Info($"Current Charge '{ be.Batteries[0].State.Now.Charge}'.");
+				//Log.Info($"Initial Charge '{be.Batteries[0].State.Initial.Charge}'.");
+				//Log.Info($"Current Charge '{ be.Batteries[0].State.Now.Charge}'.");
 
-				Log.Info($"initial State of discharge '{ be.Batteries[0].State.Initial.SoD}'.");
-				Log.Info($"Current State of discharge '{ be.Batteries[0].State.Now.SoD}'.");
+				//Log.Info($"initial State of discharge '{ be.Batteries[0].State.Initial.SoD}'.");
+				//Log.Info($"Current State of discharge '{ be.Batteries[0].State.Now.SoD}'.");
 
-				Log.Info($"Initial Volt '{be.Batteries[0].State.Initial.Voltage}'.");
-				Log.Info($"Current Volt '{ be.Batteries[0].State.Now.Voltage}'.");
+				//Log.Info($"Initial Volt '{be.Batteries[0].State.Initial.Voltage}'.");
+				//Log.Info($"Current Volt '{ be.Batteries[0].State.Now.Voltage}'.");
 
 				
 				//be.Batteries[0].State.Initial.Charge;
@@ -143,15 +163,21 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 
             //Adding different simulator to the main repo
-            Log.Info($"Adding to repo--Start");
 
-            repo.Add(networkSimulator.
-				With(batteryArgs)
-                .With(radioArgs));
-            repo.Add(radioChannelSimulator);
+            //        repo.Add(networkSimulator.
+            //With(batteryArgs)
+            //            .With(radioArgs));
+            repo.Add(networkSimulator);
+            //repo.Add(radioChannelSimulator);
             repo.Add(batterySim);
 
-			Log.Info($"Adding to repo--End");
+			var attackArgument = new AttackWpanArgs();
+			
+            attackArgument.victimNodeName = victimNodeName;
+
+            var simulator = repo.Add(new AttackWpanSimpleSimulator()
+				.With(attackArgument).With(netArgs));
+
 
 
 			runtime.BindSimulators(repo);

@@ -8,10 +8,10 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-      "D3vS1m.Application/1.0.2": {
+      "D3vS1m.Application/1.0.3": {
         "type": "package",
         "dependencies": {
-          "D3vS1m.Domain": "1.0.2",
+          "D3vS1m.Domain": "1.0.3",
           "FluentValidation": "9.0.1"
         },
         "compile": {
@@ -21,7 +21,7 @@
           "lib/netstandard2.0/D3vS1m.Application.dll": {}
         }
       },
-      "D3vS1m.Domain/1.0.2": {
+      "D3vS1m.Domain/1.0.3": {
         "type": "package",
         "dependencies": {
           "Sin.Net.Domain": "0.3.2"
@@ -42,7 +42,7 @@
           "lib/netstandard2.0/FluentValidation.dll": {}
         }
       },
-      "Microsoft.CodeCoverage/16.7.0": {
+      "Microsoft.CodeCoverage/16.7.1": {
         "type": "package",
         "compile": {
           "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {}
@@ -55,11 +55,11 @@
           "build/netstandard1.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-      "Microsoft.NET.Test.Sdk/16.7.0": {
+      "Microsoft.NET.Test.Sdk/16.7.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.CodeCoverage": "16.7.0",
-          "Microsoft.TestPlatform.TestHost": "16.7.0"
+          "Microsoft.CodeCoverage": "16.7.1",
+          "Microsoft.TestPlatform.TestHost": "16.7.1"
         },
         "build": {
           "build/netcoreapp2.1/Microsoft.NET.Test.Sdk.props": {},
@@ -87,7 +87,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.TestPlatform.ObjectModel/16.7.0": {
+      "Microsoft.TestPlatform.ObjectModel/16.7.1": {
         "type": "package",
         "dependencies": {
           "NuGet.Frameworks": "5.0.0"
@@ -183,10 +183,10 @@
           }
         }
       },
-      "Microsoft.TestPlatform.TestHost/16.7.0": {
+      "Microsoft.TestPlatform.TestHost/16.7.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "16.7.0",
+          "Microsoft.TestPlatform.ObjectModel": "16.7.1",
           "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
@@ -1627,8 +1627,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "D3vS1m.Application": "1.0.2",
-          "D3vS1m.Domain": "1.0.2"
+          "D3vS1m.Application": "1.0.3",
+          "D3vS1m.Domain": "1.0.3"
         },
         "compile": {
           "bin/placeholder/D3vS1m.Application.AttackWpan.dll": {}
@@ -1672,30 +1672,30 @@
         "coverlet.collector.nuspec"
       ]
     },
-    "D3vS1m.Application/1.0.2": {
-      "sha512": "Ut/T7y8n75+Y/CBA8IudXIQe+7CbV8wf6VFVlwjSx4JaKtiVsUdpX3XgwKwuNAtSBhaDzaWCkxxL91M3cvbKuw==",
+    "D3vS1m.Application/1.0.3": {
+      "sha512": "0jaspRBfgGAF2OaZTP4N+6rT5m3r2jSmEW4twCWDTMHEY8y9bqCH0ke5kx99C+s/FqI8vPFa60SsXBv/hdqOCg==",
       "type": "package",
-      "path": "d3vs1m.application/1.0.2",
+      "path": "d3vs1m.application/1.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "d3vs1m-logo-v2.png",
-        "d3vs1m.application.1.0.2.nupkg.sha512",
+        "d3vs1m.application.1.0.3.nupkg.sha512",
         "d3vs1m.application.nuspec",
         "lib/netstandard2.0/D3vS1m.Application.dll"
       ]
     },
-    "D3vS1m.Domain/1.0.2": {
-      "sha512": "m60rTzQCs/lDxwlmXonuRhsV1s+mQbMpaDlxtjB7oqN+VwUJAactgQ++zJy3opEZGRrY6eXsIYcWDUx6nbuCDg==",
+    "D3vS1m.Domain/1.0.3": {
+      "sha512": "cz6rcG7GpKYjW4PIjCwhJ0lcaGOh4u7KErBHgJuqJjvvRlN3PFM+xQIcnekAz4RoE0mN++/ZPOL9vMVwMKWCcw==",
       "type": "package",
-      "path": "d3vs1m.domain/1.0.2",
+      "path": "d3vs1m.domain/1.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "d3vs1m-logo-v2.png",
-        "d3vs1m.domain.1.0.2.nupkg.sha512",
+        "d3vs1m.domain.1.0.3.nupkg.sha512",
         "d3vs1m.domain.nuspec",
         "lib/netstandard2.0/D3vS1m.Domain.dll"
       ]
@@ -1715,10 +1715,10 @@
         "lib/netstandard2.0/FluentValidation.xml"
       ]
     },
-    "Microsoft.CodeCoverage/16.7.0": {
-      "sha512": "przIisHDudyAtmh0hx8GCW8lOlJ7Zi0OX8LVrLlyFvaIPl6shGVhcPFjwAtY8cuSEpjc/Rpu9+BuJcphcXpyrA==",
+    "Microsoft.CodeCoverage/16.7.1": {
+      "sha512": "PhSppbk+kvAyD9yGJIcBRJ/XYwY+21YK88l22PGTtixaxNdjnx1idVKh88LCGwKaTL8HhlnQ41VmBiBdZJzIQw==",
       "type": "package",
-      "path": "microsoft.codecoverage/16.7.0",
+      "path": "microsoft.codecoverage/16.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1747,14 +1747,14 @@
         "build/netstandard1.0/zh-Hant/Microsoft.VisualStudio.TraceDataCollector.resources.dll",
         "lib/net45/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
         "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
-        "microsoft.codecoverage.16.7.0.nupkg.sha512",
+        "microsoft.codecoverage.16.7.1.nupkg.sha512",
         "microsoft.codecoverage.nuspec"
       ]
     },
-    "Microsoft.NET.Test.Sdk/16.7.0": {
-      "sha512": "sF0iQqII3WEOdcDwM+bNog2zrRM48MHtKP3T3scfZmlh5IvFIBRfS0kGH9AGOMpTqmpkTYuMkEUkSaz94aWYkA==",
+    "Microsoft.NET.Test.Sdk/16.7.1": {
+      "sha512": "7T3XYuLT2CRMZXwlp8p4cEEf6y7VifxTdKwYNzCYp31CN4iyrcDKneIJvNTo0YVnTxJn+CSlGVlUnZHUlAwt9A==",
       "type": "package",
-      "path": "microsoft.net.test.sdk/16.7.0",
+      "path": "microsoft.net.test.sdk/16.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1767,7 +1767,7 @@
         "build/netcoreapp2.1/Microsoft.NET.Test.Sdk.targets",
         "build/uap10.0/Microsoft.NET.Test.Sdk.props",
         "buildMultiTargeting/Microsoft.NET.Test.Sdk.props",
-        "microsoft.net.test.sdk.16.7.0.nupkg.sha512",
+        "microsoft.net.test.sdk.16.7.1.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
       ]
     },
@@ -1801,10 +1801,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.TestPlatform.ObjectModel/16.7.0": {
-      "sha512": "1/49rMeZXCdlAd0bCBcL6zicQm+lCNOW5N0d7DdNUdtFASCWTQ2u8MauoFT3zwYsZDcC/3q6zLnt723EGeQwZg==",
+    "Microsoft.TestPlatform.ObjectModel/16.7.1": {
+      "sha512": "FL+VpAC/nCCzj80MwX6L8gJD06u2m1SKcQQLAymDLFqNtgtI9h3J5n0mVN+s18qcMzybsmO9GK7rMuHYx11KMg==",
       "type": "package",
-      "path": "microsoft.testplatform.objectmodel/16.7.0",
+      "path": "microsoft.testplatform.objectmodel/16.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1866,14 +1866,14 @@
         "lib/netstandard2.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-        "microsoft.testplatform.objectmodel.16.7.0.nupkg.sha512",
+        "microsoft.testplatform.objectmodel.16.7.1.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
     },
-    "Microsoft.TestPlatform.TestHost/16.7.0": {
-      "sha512": "5yWCRl3oI6Hj9ikgthc/QoyvwUD7CbWnZZjgm8jqZ4HZawAEDNpXLRjYkhWAtZ/sOfbC7lFSV1Pmk87FmNxuSA==",
+    "Microsoft.TestPlatform.TestHost/16.7.1": {
+      "sha512": "mv7MnBDtqwQAjoH+AphE+Tu0dsF6x/c7Zs8umkb2McbvNALJdfBuWJQbiXGWqhNq7k8eMmnkNO6klJz4pkgekw==",
       "type": "package",
-      "path": "microsoft.testplatform.testhost/16.7.0",
+      "path": "microsoft.testplatform.testhost/16.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2018,7 +2018,7 @@
         "lib/uap10.0/Microsoft.TestPlatform.Utilities.dll",
         "lib/uap10.0/Microsoft.VisualStudio.TestPlatform.Common.dll",
         "lib/uap10.0/testhost.dll",
-        "microsoft.testplatform.testhost.16.7.0.nupkg.sha512",
+        "microsoft.testplatform.testhost.16.7.1.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
@@ -5641,12 +5641,12 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "D3vS1m.Application >= 1.0.2",
+      "D3vS1m.Application >= 1.0.3",
       "D3vS1m.Application.AttackWpan >= 1.0.0",
-      "D3vS1m.Domain >= 1.0.2",
+      "D3vS1m.Domain >= 1.0.3",
       "MSTest.TestAdapter >= 2.1.2",
       "MSTest.TestFramework >= 2.1.2",
-      "Microsoft.NET.Test.Sdk >= 16.7.0",
+      "Microsoft.NET.Test.Sdk >= 16.7.1",
       "Sin.Net.Logging >= 0.3.0",
       "Sin.Net.Persistence >= 0.3.0",
       "coverlet.collector >= 1.3.0"
@@ -5695,11 +5695,11 @@
         "dependencies": {
           "D3vS1m.Application": {
             "target": "Package",
-            "version": "[1.0.2, )"
+            "version": "[1.0.3, )"
           },
           "D3vS1m.Domain": {
             "target": "Package",
-            "version": "[1.0.2, )"
+            "version": "[1.0.3, )"
           },
           "MSTest.TestAdapter": {
             "target": "Package",
@@ -5711,7 +5711,7 @@
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "[16.7.0, )"
+            "version": "[16.7.1, )"
           },
           "Sin.Net.Logging": {
             "target": "Package",

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9fsIkuo7QiTRymXR7wZDZhJ/hgnTVAAqFo8Eo1VXZ4kpJ7kPdI697CMGR2ZHDBOMr45QpARdr/fYtOnx3bAE8w==",
+  "dgSpecHash": "8mdXN9INCMRVwFsdx1K9s186Q1XuKJ0q6lP0kWaxWfz2FldMud0dTHoDwK1EDGZ/tVUvF3RnoiAEpPkBqJbJiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\nepho\\source\\repos\\dev-security\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan\\D3vS1m.Application.AttackWpan.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.application\\1.0.2\\d3vs1m.application.1.0.2.nupkg.sha512",
-    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.domain\\1.0.2\\d3vs1m.domain.1.0.2.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.application\\1.0.3\\d3vs1m.application.1.0.3.nupkg.sha512",
+    "C:\\Users\\nepho\\.nuget\\packages\\d3vs1m.domain\\1.0.3\\d3vs1m.domain.1.0.3.nupkg.sha512",
     "C:\\Users\\nepho\\.nuget\\packages\\fluentvalidation\\9.0.1\\fluentvalidation.9.0.1.nupkg.sha512",
     "C:\\Users\\nepho\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\nepho\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

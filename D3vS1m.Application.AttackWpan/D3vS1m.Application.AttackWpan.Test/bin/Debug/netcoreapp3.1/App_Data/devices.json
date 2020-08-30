@@ -71,4 +71,8 @@
 		"Name": "Tag_0x11",
 		"Position": {"X": 12, "Y": 3.2, "Z": 47 }
 	},
+	{
+		"Name": "victimNode",
+		"Position": {"X": 13.4, "Y": 3.3, "Z": 42 }
+	},
 ]

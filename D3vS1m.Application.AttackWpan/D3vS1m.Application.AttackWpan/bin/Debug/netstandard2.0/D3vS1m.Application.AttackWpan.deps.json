@@ -9,34 +9,34 @@
     ".NETStandard,Version=v2.0/": {
       "D3vS1m.Application.AttackWpan/1.0.0": {
         "dependencies": {
-          "D3vS1m.Application": "1.0.2",
-          "D3vS1m.Domain": "1.0.2",
+          "D3vS1m.Application": "1.0.3",
+          "D3vS1m.Domain": "1.0.3",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
           "D3vS1m.Application.AttackWpan.dll": {}
         }
       },
-      "D3vS1m.Application/1.0.2": {
+      "D3vS1m.Application/1.0.3": {
         "dependencies": {
-          "D3vS1m.Domain": "1.0.2",
+          "D3vS1m.Domain": "1.0.3",
           "FluentValidation": "9.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/D3vS1m.Application.dll": {
-            "assemblyVersion": "1.0.2.0",
-            "fileVersion": "1.0.2.0"
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
           }
         }
       },
-      "D3vS1m.Domain/1.0.2": {
+      "D3vS1m.Domain/1.0.3": {
         "dependencies": {
           "Sin.Net.Domain": "0.3.2"
         },
         "runtime": {
           "lib/netstandard2.0/D3vS1m.Domain.dll": {
-            "assemblyVersion": "1.0.2.0",
-            "fileVersion": "1.0.2.0"
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
           }
         }
       },
@@ -70,19 +70,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "D3vS1m.Application/1.0.2": {
+    "D3vS1m.Application/1.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ut/T7y8n75+Y/CBA8IudXIQe+7CbV8wf6VFVlwjSx4JaKtiVsUdpX3XgwKwuNAtSBhaDzaWCkxxL91M3cvbKuw==",
-      "path": "d3vs1m.application/1.0.2",
-      "hashPath": "d3vs1m.application.1.0.2.nupkg.sha512"
+      "sha512": "sha512-0jaspRBfgGAF2OaZTP4N+6rT5m3r2jSmEW4twCWDTMHEY8y9bqCH0ke5kx99C+s/FqI8vPFa60SsXBv/hdqOCg==",
+      "path": "d3vs1m.application/1.0.3",
+      "hashPath": "d3vs1m.application.1.0.3.nupkg.sha512"
     },
-    "D3vS1m.Domain/1.0.2": {
+    "D3vS1m.Domain/1.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-m60rTzQCs/lDxwlmXonuRhsV1s+mQbMpaDlxtjB7oqN+VwUJAactgQ++zJy3opEZGRrY6eXsIYcWDUx6nbuCDg==",
-      "path": "d3vs1m.domain/1.0.2",
-      "hashPath": "d3vs1m.domain.1.0.2.nupkg.sha512"
+      "sha512": "sha512-cz6rcG7GpKYjW4PIjCwhJ0lcaGOh4u7KErBHgJuqJjvvRlN3PFM+xQIcnekAz4RoE0mN++/ZPOL9vMVwMKWCcw==",
+      "path": "d3vs1m.domain/1.0.3",
+      "hashPath": "d3vs1m.domain.1.0.3.nupkg.sha512"
     },
     "FluentValidation/9.0.1": {
       "type": "package",

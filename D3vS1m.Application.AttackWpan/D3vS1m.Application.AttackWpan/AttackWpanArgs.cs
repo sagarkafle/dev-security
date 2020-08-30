@@ -19,5 +19,7 @@ namespace D3vS1m.Application.AttackWpan
         // -- properties
 
         public int Counter { get; set; }
+
+        public string victimNodeName { get; set; }
     }
 }

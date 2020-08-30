@@ -40,11 +40,11 @@
           "dependencies": {
             "D3vS1m.Application": {
               "target": "Package",
-              "version": "[1.0.2, )"
+              "version": "[1.0.3, )"
             },
             "D3vS1m.Domain": {
               "target": "Package",
-              "version": "[1.0.2, )"
+              "version": "[1.0.3, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
