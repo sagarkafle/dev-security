@@ -7,6 +7,7 @@ using D3vS1m.Domain.System.Enumerations;
 using Sin.Net.Domain.Persistence.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -64,6 +65,8 @@ namespace D3vS1m.Application.AttackWpan
                     var battery = victimNodePowerSupply as BatteryPack;
                     var currentCharge = battery.State.Now.Charge;
                     var remainingCharge = battery.State.Initial.Charge - currentCharge;
+                    string createText = _args.Counter +".  Victim Node Remaining Charge : " + remainingCharge+ "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
+                    File.AppendAllText(_args.resultFilePath, createText);
                     Log.Info($"Victim Node Charge Consumption'{currentCharge}'.");
                     Log.Info($"Victim Node Remaining Charge'{remainingCharge}'.");
                 }
