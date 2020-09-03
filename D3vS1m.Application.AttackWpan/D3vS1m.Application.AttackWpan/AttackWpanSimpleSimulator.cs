@@ -18,7 +18,7 @@ namespace D3vS1m.Application.AttackWpan
         // -- fields
 
         private AttackWpanArgs _args;
-        NetworkArgs _netargs;
+        private NetworkArgs _netargs;
         // -- constructor
         public AttackWpanSimpleSimulator() : this(null)
         {
@@ -43,6 +43,17 @@ namespace D3vS1m.Application.AttackWpan
         {
             base.BeforeExecution();
 
+           if(_args.attackName== "BatteryExhaustionAttack")
+            {
+                BatteryExhaustionAttack();
+            }
+
+            base.AfterExecution();
+        }
+
+        // -- properties
+        private void BatteryExhaustionAttack()
+        {
             //check netarguments
             if (_netargs == null)
             {
@@ -55,7 +66,7 @@ namespace D3vS1m.Application.AttackWpan
             //'attackedDevice'
             var victimNodeName = _args.victimNodeName;
 
-            var victimNode =  _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
+            var victimNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
             if (victimNode != null)
             {
                 Log.Info($"Victim Node Found");
@@ -65,7 +76,11 @@ namespace D3vS1m.Application.AttackWpan
                     var battery = victimNodePowerSupply as BatteryPack;
                     var currentCharge = battery.State.Now.Charge;
                     var remainingCharge = battery.State.Initial.Charge - currentCharge;
-                    string createText = _args.Counter +".  Victim Node Remaining Charge : " + remainingCharge+ "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
+                    string createText = _args.Counter+1 + ".  Victim Node Remaining Charge : " + remainingCharge + "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
+                    //if (currentCharge > battery.State.Initial.Charge)
+                    //{
+                    //    Log.Info($"Battery Charge is finished. ");
+                    //}
                     File.AppendAllText(_args.resultFilePath, createText);
                     Log.Info($"Victim Node Charge Consumption'{currentCharge}'.");
                     Log.Info($"Victim Node Remaining Charge'{remainingCharge}'.");
@@ -73,13 +88,8 @@ namespace D3vS1m.Application.AttackWpan
                 //hasPowerSupply
                 //victimNode.Parts
             }
-                _args.Counter++;
-
-            base.AfterExecution();
+            _args.Counter++;
         }
-
-        // -- properties
-
 
         public override string Name => AttackWpanModule.AttackInWpan.Name;
         public override SimulationTypes Type => SimulationTypes.Custom;

@@ -13,6 +13,7 @@ using D3vS1m.Domain.Simulation;
 using D3vS1m.Domain.System.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sin.Net.Domain.Persistence.Logging;
+using System.Reflection.Metadata.Ecma335;
 
 namespace D3vS1m.Application.AttackWpan.Test
 {
@@ -66,7 +67,7 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
 			// arrange
-			var iternations = 511;
+			var iternations = 513;
 			var passed = 0;
 			var victimNodeName = "victimNode";
 			var resultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\output.txt";
@@ -75,6 +76,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
 			attackArgument.resultFilePath = resultFilePath;
+			attackArgument.attackName = "BatteryExhaustionAttack";
 			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
 			//	.With(new AttackWpanArgs()));
 
@@ -135,9 +137,6 @@ namespace D3vS1m.Application.AttackWpan.Test
 			batterySim.Executed += (o, e) =>
 			{
 				var be = e.Arguments as BatteryArgs;
-				
-
-
             };
 
 
@@ -189,6 +188,16 @@ namespace D3vS1m.Application.AttackWpan.Test
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
 			Assert.IsTrue(args.Counter > 0, "The counter should be greater than zero.");
 		}
+
+		public bool AttackSimulator(String attackName)
+        {
+            if (attackName=="BatteryAttack")
+            {
+
+            }
+
+			return true;
+        }
 
 
 	}
