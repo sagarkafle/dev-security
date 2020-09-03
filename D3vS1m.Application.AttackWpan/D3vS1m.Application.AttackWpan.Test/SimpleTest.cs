@@ -14,6 +14,8 @@ using D3vS1m.Domain.System.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sin.Net.Domain.Persistence.Logging;
 using System.Reflection.Metadata.Ecma335;
+using System.Linq;
+using FluentValidation.Validators;
 
 namespace D3vS1m.Application.AttackWpan.Test
 {
@@ -67,7 +69,7 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
 			// arrange
-			var iternations = 513;
+			var iternations = 512;
 			var passed = 0;
 			var victimNodeName = "victimNode";
 			var resultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\output.txt";
@@ -105,10 +107,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 
             //Battery simulation initialization
-            _battery = new BatteryPack();
-            _battery.CutoffVoltage = 1.2F;
-            _battery.State.Init(_battery);
-            BatteryState s = _battery.State;
+            
+           
 
             var testNetworkDevice = netArgs.Network;
 
@@ -118,8 +118,12 @@ namespace D3vS1m.Application.AttackWpan.Test
 		
 			netArgs.Network.Items.ForEach(d =>
 			{
-				//var powerSupply = d.Parts.GetPowerSupply();
-				d.Parts.Add(_battery);
+				_battery = new BatteryPack();
+				_battery.CutoffVoltage = 1.2F;
+                _battery.State.Init(_battery);
+
+                //var powerSupply = d.Parts.GetPowerSupply();
+                d.Parts.Add(_battery);
 			});
 
 			
@@ -178,11 +182,27 @@ namespace D3vS1m.Application.AttackWpan.Test
 			{
 				throw new RuntimeException("The runtime validation failed.");
 			}
-			await runtime.RunAsync(iternations);
+
+			//Is battery depleted then stop the simulation
+			//Inject a method
+			//
+			await runtime.RunAsync((r) =>
+			{
+
+				var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+				var networkArgs = networkSimulator.Arguments as NetworkArgs;
+				var devices = networkArgs.Network.Items;
+				//return maximumIteration or if battery gets depleted 
+				return devices
+					.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+					.Any(s => s.State.IsDepleted);
+
+				//return false;
+			});
 
 
 			// assert
-			Log.Info($"Counter Value='{ args.Counter}'.");
+			//Log.Info($"Counter Value='{ args.Counter}'.");
 			Assert.IsNotNull(args, "The argument should not be null");
 
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");

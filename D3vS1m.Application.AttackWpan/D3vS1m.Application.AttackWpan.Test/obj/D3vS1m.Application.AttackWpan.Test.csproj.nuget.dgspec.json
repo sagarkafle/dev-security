@@ -44,7 +44,7 @@
           "dependencies": {
             "D3vS1m.Application": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.0.4, )"
             },
             "D3vS1m.Domain": {
               "target": "Package",
@@ -132,7 +132,7 @@
           "dependencies": {
             "D3vS1m.Application": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.0.4, )"
             },
             "D3vS1m.Domain": {
               "target": "Package",

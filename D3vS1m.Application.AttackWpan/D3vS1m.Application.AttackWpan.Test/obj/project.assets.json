@@ -8,7 +8,7 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-      "D3vS1m.Application/1.0.3": {
+      "D3vS1m.Application/1.0.4": {
         "type": "package",
         "dependencies": {
           "D3vS1m.Domain": "1.0.3",
@@ -1627,7 +1627,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "D3vS1m.Application": "1.0.3",
+          "D3vS1m.Application": "1.0.4",
           "D3vS1m.Domain": "1.0.3"
         },
         "compile": {
@@ -1672,16 +1672,16 @@
         "coverlet.collector.nuspec"
       ]
     },
-    "D3vS1m.Application/1.0.3": {
-      "sha512": "0jaspRBfgGAF2OaZTP4N+6rT5m3r2jSmEW4twCWDTMHEY8y9bqCH0ke5kx99C+s/FqI8vPFa60SsXBv/hdqOCg==",
+    "D3vS1m.Application/1.0.4": {
+      "sha512": "vTxIHxwbysBDnq0435qJkuT4aPC5HUEYZtZSIRkUQ06uMzagc3W15ERa9kJPY6K8CnPIyC3MVCfXl38e47pI3A==",
       "type": "package",
-      "path": "d3vs1m.application/1.0.3",
+      "path": "d3vs1m.application/1.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "d3vs1m-logo-v2.png",
-        "d3vs1m.application.1.0.3.nupkg.sha512",
+        "d3vs1m.application.1.0.4.nupkg.sha512",
         "d3vs1m.application.nuspec",
         "lib/netstandard2.0/D3vS1m.Application.dll"
       ]
@@ -5641,7 +5641,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "D3vS1m.Application >= 1.0.3",
+      "D3vS1m.Application >= 1.0.4",
       "D3vS1m.Application.AttackWpan >= 1.0.0",
       "D3vS1m.Domain >= 1.0.3",
       "MSTest.TestAdapter >= 2.1.2",
@@ -5695,7 +5695,7 @@
         "dependencies": {
           "D3vS1m.Application": {
             "target": "Package",
-            "version": "[1.0.3, )"
+            "version": "[1.0.4, )"
           },
           "D3vS1m.Domain": {
             "target": "Package",

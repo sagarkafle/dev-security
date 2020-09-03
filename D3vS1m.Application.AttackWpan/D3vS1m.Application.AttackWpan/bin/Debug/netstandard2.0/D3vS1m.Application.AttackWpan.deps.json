@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "D3vS1m.Application.AttackWpan/1.0.0": {
         "dependencies": {
-          "D3vS1m.Application": "1.0.3",
+          "D3vS1m.Application": "1.0.4",
           "D3vS1m.Domain": "1.0.3",
           "NETStandard.Library": "2.0.3"
         },
@@ -17,15 +17,15 @@
           "D3vS1m.Application.AttackWpan.dll": {}
         }
       },
-      "D3vS1m.Application/1.0.3": {
+      "D3vS1m.Application/1.0.4": {
         "dependencies": {
           "D3vS1m.Domain": "1.0.3",
           "FluentValidation": "9.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/D3vS1m.Application.dll": {
-            "assemblyVersion": "1.0.3.0",
-            "fileVersion": "1.0.3.0"
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
           }
         }
       },
@@ -70,12 +70,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "D3vS1m.Application/1.0.3": {
+    "D3vS1m.Application/1.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0jaspRBfgGAF2OaZTP4N+6rT5m3r2jSmEW4twCWDTMHEY8y9bqCH0ke5kx99C+s/FqI8vPFa60SsXBv/hdqOCg==",
-      "path": "d3vs1m.application/1.0.3",
-      "hashPath": "d3vs1m.application.1.0.3.nupkg.sha512"
+      "sha512": "sha512-vTxIHxwbysBDnq0435qJkuT4aPC5HUEYZtZSIRkUQ06uMzagc3W15ERa9kJPY6K8CnPIyC3MVCfXl38e47pI3A==",
+      "path": "d3vs1m.application/1.0.4",
+      "hashPath": "d3vs1m.application.1.0.4.nupkg.sha512"
     },
     "D3vS1m.Domain/1.0.3": {
       "type": "package",

@@ -5,6 +5,7 @@ using D3vS1m.Domain.Runtime;
 using D3vS1m.Domain.Simulation;
 using D3vS1m.Domain.System.Enumerations;
 using Sin.Net.Domain.Persistence.Logging;
+using Sin.Net.Domain.System.UserManagement;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,13 +61,12 @@ namespace D3vS1m.Application.AttackWpan
                 //throwing exception
                 throw new System.ArgumentException("Network Arguments cannot be null", "_netArgs");
             }
-            //my logic to deplete the battery
-            //learn linq , code base about parent project d3ms1m, check properties throughly, 
-            //extending the argument to accomodATE the attack name, 
-            //'attackedDevice'
+ 
             var victimNodeName = _args.victimNodeName;
 
             var victimNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
+            //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
+
             if (victimNode != null)
             {
                 Log.Info($"Victim Node Found");
@@ -77,6 +77,14 @@ namespace D3vS1m.Application.AttackWpan
                     var currentCharge = battery.State.Now.Charge;
                     var remainingCharge = battery.State.Initial.Charge - currentCharge;
                     string createText = _args.Counter+1 + ".  Victim Node Remaining Charge : " + remainingCharge + "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
+
+                    //discharge  the battery manually with some number or by percentage
+                    //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
+                    //instance of battery pack simulator
+                    //var batteryPackSimulator = new BatteryPackSimulator();
+                    //batteryPackSimulator.Discharge(),
+                    //batterPackSimulator.With()
+                    
                     //if (currentCharge > battery.State.Initial.Charge)
                     //{
                     //    Log.Info($"Battery Charge is finished. ");
