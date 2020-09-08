@@ -68,23 +68,25 @@ namespace D3vS1m.Application.AttackWpan.Test
         [TestMethod]
         public async Task RunAttackSimulatorWithRuntime()
 		{
-			// arrange
-			var iternations = 512;
-			var passed = 0;
+            // arrange
+            //var iternations = 10000;
+            //var iternations = 9718;
+            var iternations = 500;
+            var passed = 0;
 			var victimNodeName = "victimNode";
-			var resultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\output.txt";
+			var normalNodeName = "Anchor_1";
+
+			var victimNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputVictimNode.csv";
+			var normalNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputNormalNode.csv";
 
 			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
-			attackArgument.resultFilePath = resultFilePath;
+			attackArgument.victimNoderesultFilePath = victimNodeResultFilePath;
+			attackArgument.normalNoderesultFilePath = normalNodeResultFilePath;
 			attackArgument.attackName = "BatteryExhaustionAttack";
 			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
 			//	.With(new AttackWpanArgs()));
-
-
-
-
 
 			/*
 			 * TODO: add more simulators and run the simualtion
@@ -151,6 +153,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			
 			
             attackArgument.victimNodeName = victimNodeName;
+            attackArgument.normalNodeName = normalNodeName;
 
             var simulator = repo.Add(new AttackWpanSimpleSimulator()
 				.With(attackArgument).With(netArgs));
@@ -183,27 +186,28 @@ namespace D3vS1m.Application.AttackWpan.Test
 				throw new RuntimeException("The runtime validation failed.");
 			}
 
-			//Is battery depleted then stop the simulation
-			//Inject a method
-			//
-			await runtime.RunAsync((r) =>
-			{
+            //Is battery depleted then stop the simulation
+            //Inject a method
+            //
+            //await runtime.RunAsync((r) =>
+            //{
 
-				var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-				var networkArgs = networkSimulator.Arguments as NetworkArgs;
-				var devices = networkArgs.Network.Items;
-				//return maximumIteration or if battery gets depleted 
-				return devices
-					.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-					.Any(s => s.State.IsDepleted);
+            //    var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+            //    var networkArgs = networkSimulator.Arguments as NetworkArgs;
+            //    var devices = networkArgs.Network.Items;
+            //    //return maximumIteration or if battery gets depleted 
+            //    return devices
+            //        .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+            //        .Any(s => s.State.IsDepleted);
 
-				//return false;
-			});
+            //    //return false;
+            //});
+            await runtime.RunAsync(iternations);
 
 
-			// assert
-			//Log.Info($"Counter Value='{ args.Counter}'.");
-			Assert.IsNotNull(args, "The argument should not be null");
+            // assert
+            Log.Info($"Counter Value='{ args.Counter}'.");
+            Assert.IsNotNull(args, "The argument should not be null");
 
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");
 			Assert.IsTrue(args.Counter > 0, "The counter should be greater than zero.");

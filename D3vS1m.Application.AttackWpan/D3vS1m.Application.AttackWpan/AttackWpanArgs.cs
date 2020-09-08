@@ -23,6 +23,8 @@ namespace D3vS1m.Application.AttackWpan
 
         public string attackName { get; set; }
         public string victimNodeName { get; set; }
-        public string resultFilePath { get; set; }
+        public string normalNodeName { get; set; }
+        public string victimNoderesultFilePath { get; set; }
+        public string normalNoderesultFilePath { get; set; }
     }
 }
