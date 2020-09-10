@@ -69,9 +69,9 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
             // arrange
-            //var iternations = 10000;
-            //var iternations = 9718;
-            var iternations = 500;
+            var iternations = 10000;
+            //var iternations = 9720;
+            //var iternations = 500;
             var passed = 0;
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
@@ -189,19 +189,20 @@ namespace D3vS1m.Application.AttackWpan.Test
             //Is battery depleted then stop the simulation
             //Inject a method
             //
-            //await runtime.RunAsync((r) =>
-            //{
+    //        await runtime.RunAsync((r) =>
+    //        {
 
-            //    var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-            //    var networkArgs = networkSimulator.Arguments as NetworkArgs;
-            //    var devices = networkArgs.Network.Items;
-            //    //return maximumIteration or if battery gets depleted 
-            //    return devices
-            //        .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-            //        .Any(s => s.State.IsDepleted);
+    //            var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+    //            var networkArgs = networkSimulator.Arguments as NetworkArgs;
+    //            var devices = networkArgs.Network.Items;
+    //            //return maximumIteration or if battery gets depleted 
+				////divide the code base for better debug and functionality.
+    //            return devices
+    //                .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+    //                .Any(s => s.State.IsDepleted);
 
-            //    //return false;
-            //});
+    //            //return false;
+    //        });
             await runtime.RunAsync(iternations);
 
 

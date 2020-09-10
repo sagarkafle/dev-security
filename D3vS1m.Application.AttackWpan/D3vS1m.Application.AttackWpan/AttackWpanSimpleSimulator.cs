@@ -84,36 +84,21 @@ namespace D3vS1m.Application.AttackWpan
                     {
                         var currentCharge = battery.State.Now.Charge;
                         var remainingCharge = battery.State.Initial.Charge - currentCharge;
+                        var remainingVoltageVictimNode = battery.State.Initial.Voltage - battery.State.Now.Voltage;
                         //string createText = _args.Counter+1 + ".  Victim Node Remaining Charge : " + remainingCharge + "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
 
                         //discharge  the battery manually with some number or by percentage
                         //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
                         //instance of battery pack simulator
                         var batteryPackSimulator = new BatteryPackSimulator();
-                        batteryPackSimulator.Discharge(battery, 10, new TimeSpan(0, 0, 0, 10, 0));
+                        batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
 
-                        //var batteryPolynom = battery.Polynom;
-                        //Log.Info($"PolyNom Value Value='{batteryPolynom}'.");
-                        //batterPackSimulator.With()
-
-                        //if (currentCharge > battery.State.Initial.Charge)
-                        //{
-                        //    Log.Info($"Battery Charge is finished. ");
-                        //}
-                        //File.AppendAllText(_args.resultFilePath, createText);
-
-                        //var filepath = _args.resultFilePath;
-                        //using (StreamWriter writer = new StreamWriter(new FileStream(filepath,
-                        //FileMode.Create, FileAccess.Write)))
-                        //{
-                        //    writer.WriteLine(currentCharge );
-                        //    writer.WriteLine(remainingCharge);
-                        //}
-                        Log.Info($"Victim Node Charge Consumption'{currentCharge}'.Victim Node Remaining Charge'{remainingCharge}'.");
-
+                        
+                        //Log.Info($"Victim Node Charge Consumption'{currentCharge}'.Victim Node Remaining Charge'{remainingCharge}'.");
+                        Log.Info($"Victim Node Initial Volatage'{battery.State.Initial.Voltage}'.  Victim Node Remaining Voltage '{remainingVoltageVictimNode}'.");
                         //Log.Info($"Self Discharge of victim Node::'{battery.State.Initial.SelfDischarge}'");
                         //Log.Info($"Self Discharge of victim Node::'{battery.State.Now.SelfDischarge}'");
-                        
+
                         //Log.Info($"SDR Initial victim Node::'{battery.State.Initial.SDR}'");
                         //Log.Info($"SDR Current victim Node::'{battery.State.Now.SDR}'");
 
@@ -121,8 +106,9 @@ namespace D3vS1m.Application.AttackWpan
                         var second = currentCharge.ToString();
                         var third = remainingCharge.ToString();
                         var fourth = _args.Counter;
+                        var fifth = battery.State.Now.Voltage;
                         //Suggestion made by KyleMit
-                        var newLine = string.Format("{0},{1}", fourth, second);
+                        var newLine = string.Format("{0},{1}", fourth, fifth);
                         victimNodeCsv.AppendLine(newLine);
                     }
                    
@@ -140,30 +126,38 @@ namespace D3vS1m.Application.AttackWpan
                 {
                     var normalNodePowerSupply = normalNode.Parts.GetPowerSupply();
                     var normalNodebattery = normalNodePowerSupply as BatteryPack;
-                    var currentChargenormalNode = normalNodebattery.State.Now.Charge;
-                    var remainingChargeNormalNode = normalNodebattery.State.Initial.Charge - currentChargenormalNode;
+
+                    if (!normalNodebattery.State.IsDepleted)
+                    {
+                        var currentChargenormalNode = normalNodebattery.State.Now.Charge;
+                        var remainingChargeNormalNode = normalNodebattery.State.Initial.Charge - currentChargenormalNode;
+                        var remainingVoltageNormalNode = normalNodebattery.State.Initial.Voltage - normalNodebattery.State.Now.Voltage;
 
 
-                
-                    Log.Info($"Normal Node Charge Consumption'{currentChargenormalNode}'.  Normal Node Remaining Charge'{remainingChargeNormalNode}'.");
 
-                    //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Initial.SelfDischarge}'");
-                    //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Now.SelfDischarge}'");
-                    //Log.Info($"SDR Initial victim Node::'{normalNodebattery.State.Initial.SDR}'");
-                    //Log.Info($"SDR Current victim Node::'{normalNodebattery.State.Now.SDR}'");
+                        //Log.Info($"Normal Node Charge Consumption'{currentChargenormalNode}'.  Normal Node Remaining Charge'{remainingChargeNormalNode}'.");
+                        Log.Info($"Normal Node Initial Volatage'{normalNodebattery.State.Initial.Voltage}'.  Normal Node Remaining Voltage '{remainingVoltageNormalNode}'.");
 
-                    //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.Polynom.}'");
+                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Initial.SelfDischarge}'");
+                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Now.SelfDischarge}'");
+                        //Log.Info($"SDR Initial victim Node::'{normalNodebattery.State.Initial.SDR}'");
+                        //Log.Info($"SDR Current victim Node::'{normalNodebattery.State.Now.SDR}'");
 
-                    //var first = currentChargenormalNode.ToString();
-                    //var second = remainingChargeNormalNode.ToString();
+                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.Polynom.}'");
 
-                    var first = normalNodebattery.State.Now.ElapsedTime.TotalSeconds;
-                    var second = currentChargenormalNode.ToString();
-                    var third = remainingChargeNormalNode.ToString();
-                    var fourth = _args.Counter;
-                    //Suggestion made by KyleMit
-                    var newLine = string.Format("{0},{1}", fourth, second);
-                    normalNodeCsv.AppendLine(newLine);
+                        //var first = currentChargenormalNode.ToString();
+                        //var second = remainingChargeNormalNode.ToString();
+
+                        var first = normalNodebattery.State.Now.ElapsedTime.TotalSeconds;
+                        var second = currentChargenormalNode.ToString();
+                        var third = remainingChargeNormalNode.ToString();
+                        var fourth = _args.Counter;
+                        var fifth = normalNodebattery.State.Now.Voltage;
+                        //Suggestion made by KyleMit
+                        var newLine = string.Format("{0},{1}", fourth, fifth);
+                        normalNodeCsv.AppendLine(newLine);
+                    }
+                   
                 }
             }
                 _args.Counter++;
