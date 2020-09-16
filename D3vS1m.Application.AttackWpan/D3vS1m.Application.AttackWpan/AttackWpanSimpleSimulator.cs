@@ -91,7 +91,12 @@ namespace D3vS1m.Application.AttackWpan
                         //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
                         //instance of battery pack simulator
                         var batteryPackSimulator = new BatteryPackSimulator();
-                        batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
+                        var sleepTime = _args.Counter % 2;
+                        if(sleepTime == 0)
+                        {
+                            batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
+                        }
+                        //batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
 
                         
                         //Log.Info($"Victim Node Charge Consumption'{currentCharge}'.Victim Node Remaining Charge'{remainingCharge}'.");

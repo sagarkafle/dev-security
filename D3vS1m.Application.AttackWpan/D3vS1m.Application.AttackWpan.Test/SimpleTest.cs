@@ -69,9 +69,9 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
             // arrange
-            var iternations = 10000;
+            //var iternations = 10000;
             //var iternations = 9720;
-            //var iternations = 500;
+            var iternations = 500;
             var passed = 0;
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
