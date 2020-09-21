@@ -70,21 +70,28 @@ namespace D3vS1m.Application.AttackWpan.Test
 		{
             // arrange
             //var iternations = 10000;
-            //var iternations = 9720;
-            var iternations = 500;
+            var iternations = 9720;
+            //var iternations = 100;
+            //var iternations = 500;
             var passed = 0;
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
 
 			var victimNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputVictimNode.csv";
 			var normalNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputNormalNode.csv";
+			var VoltageCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateVOltageCOnsumption.csv";
+			var ChargeCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateChargeCOnsumption.csv";
 
 			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
 			attackArgument.victimNoderesultFilePath = victimNodeResultFilePath;
 			attackArgument.normalNoderesultFilePath = normalNodeResultFilePath;
+			attackArgument.CurrentStateVoltageCOnsumptionCsvFilePath = VoltageCOnsumptionResultFilePath;
+			attackArgument.CurrentStateChargeCOnsumptionCsvFilePath = ChargeCOnsumptionResultFilePath;
 			attackArgument.attackName = "BatteryExhaustionAttack";
+
+			attackArgument.sleepCounter = 0;
 			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
 			//	.With(new AttackWpanArgs()));
 
@@ -186,24 +193,27 @@ namespace D3vS1m.Application.AttackWpan.Test
 				throw new RuntimeException("The runtime validation failed.");
 			}
 
-            //Is battery depleted then stop the simulation
-            //Inject a method
-            //
-    //        await runtime.RunAsync((r) =>
-    //        {
+			//Is battery depleted then stop the simulation
+			//Inject a method
+			//
+			//        await runtime.RunAsync((r) =>
+			//        {
 
-    //            var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-    //            var networkArgs = networkSimulator.Arguments as NetworkArgs;
-    //            var devices = networkArgs.Network.Items;
-    //            //return maximumIteration or if battery gets depleted 
-				////divide the code base for better debug and functionality.
-    //            return devices
-    //                .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-    //                .Any(s => s.State.IsDepleted);
+			//            var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+			//            var networkArgs = networkSimulator.Arguments as NetworkArgs;
+			//            var devices = networkArgs.Network.Items;
+			//            //return maximumIteration or if battery gets depleted 
+			////divide the code base for better debug and functionality.
+			//            return devices
+			//                .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+			//                .Any(s => s.State.IsDepleted);
 
-    //            //return false;
-    //        });
+			//            //return false;
+			//        });
+		
+
             await runtime.RunAsync(iternations);
+            
 
 
             // assert

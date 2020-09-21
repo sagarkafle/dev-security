@@ -22,6 +22,8 @@ namespace D3vS1m.Application.AttackWpan
         private NetworkArgs _netargs;
          private StringBuilder victimNodeCsv  = new StringBuilder();
          private StringBuilder normalNodeCsv  = new StringBuilder();
+         private StringBuilder CurrentStateVoltageCOnsumptionCsv  = new StringBuilder();
+         private StringBuilder CurrentStateChargeCOnsumptionCsv  = new StringBuilder();
 
         // -- constructor
         public AttackWpanSimpleSimulator() : this(null)
@@ -71,7 +73,14 @@ namespace D3vS1m.Application.AttackWpan
 
             var victimNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
             //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
+            float victimNodeVoltageNowCsv = 0;
+            float normalNodeVoltageNowCsv = 0;
 
+            float victimNodeCurrentCharge = 0;
+            float normalNodeCurrentCharge = 0;
+
+            float victimNodeRemainingChargeCsv = 0;
+            float normalNodeRemainingChargeCsv = 0;
             if (victimNode != null)
             {
                 //Log.Info($"Victim Node Found");
@@ -91,10 +100,19 @@ namespace D3vS1m.Application.AttackWpan
                         //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
                         //instance of battery pack simulator
                         var batteryPackSimulator = new BatteryPackSimulator();
-                        var sleepTime = _args.Counter % 2;
+
+                        //Sleep time description and attack during sleep time 
+                        var sleepTimeArgument = _args.Counter % 500;
+                        if (sleepTimeArgument == 0){
+                         
+
+                            _args.sleepCounter ++;
+                            Log.Info($"Argument COunter'{_args.Counter}'.  SleepCounter '{_args.sleepCounter}'.");
+                        }
+                        var sleepTime = _args.sleepCounter % 4;
                         if(sleepTime == 0)
                         {
-                            batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
+                            batteryPackSimulator.Discharge(battery, 250, new TimeSpan(0, 0, 0, 10, 0));
                         }
                         //batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
 
@@ -108,12 +126,14 @@ namespace D3vS1m.Application.AttackWpan
                         //Log.Info($"SDR Current victim Node::'{battery.State.Now.SDR}'");
 
                         var first = battery.State.Now.ElapsedTime.TotalSeconds;
-                        var second = currentCharge.ToString();
-                        var third = remainingCharge.ToString();
+                         victimNodeCurrentCharge = battery.State.Now.Charge;
+                        victimNodeRemainingChargeCsv = remainingCharge;
                         var fourth = _args.Counter;
                         var fifth = battery.State.Now.Voltage;
+                         victimNodeVoltageNowCsv = battery.State.Now.Voltage;
                         //Suggestion made by KyleMit
                         var newLine = string.Format("{0},{1}", fourth, fifth);
+                       
                         victimNodeCsv.AppendLine(newLine);
                     }
                    
@@ -154,20 +174,32 @@ namespace D3vS1m.Application.AttackWpan
                         //var second = remainingChargeNormalNode.ToString();
 
                         var first = normalNodebattery.State.Now.ElapsedTime.TotalSeconds;
-                        var second = currentChargenormalNode.ToString();
-                        var third = remainingChargeNormalNode.ToString();
+                         normalNodeCurrentCharge = normalNodebattery.State.Now.Charge;
+                        normalNodeRemainingChargeCsv = remainingChargeNormalNode;
                         var fourth = _args.Counter;
                         var fifth = normalNodebattery.State.Now.Voltage;
-                        //Suggestion made by KyleMit
+                         normalNodeVoltageNowCsv = normalNodebattery.State.Now.Voltage;
+
                         var newLine = string.Format("{0},{1}", fourth, fifth);
                         normalNodeCsv.AppendLine(newLine);
                     }
                    
                 }
             }
-                _args.Counter++;
-            File.WriteAllText(_args.victimNoderesultFilePath, victimNodeCsv.ToString());
-            File.WriteAllText(_args.normalNoderesultFilePath, normalNodeCsv.ToString());
+
+            //Current node Volt consumption append into csv 
+            string addNewLine = string.Format("{0},{1},{2}", _args.Counter, normalNodeVoltageNowCsv, victimNodeVoltageNowCsv);
+            CurrentStateVoltageCOnsumptionCsv.AppendLine(addNewLine);
+            //Current node Charge consumption append into csv 
+            string addNewLineCharge = string.Format("{0},{1},{2}", _args.Counter, normalNodeRemainingChargeCsv, victimNodeRemainingChargeCsv);
+            CurrentStateChargeCOnsumptionCsv.AppendLine(addNewLineCharge);
+            //csv.AppendFormat(...)
+            _args.Counter++;
+            File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
+            
+            File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
+            //File.WriteAllText(_args.victimNoderesultFilePath, victimNodeCsv.ToString());
+            //File.WriteAllText(_args.normalNoderesultFilePath, normalNodeCsv.ToString());
         }
 
         public override string Name => AttackWpanModule.AttackInWpan.Name;
