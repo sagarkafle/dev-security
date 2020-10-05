@@ -70,7 +70,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 		{
             // arrange
             //var iternations = 10000;
-            var iternations = 9720;
+            //var iternations = 9720;
+            var iternations = 9718;
             //var iternations = 100;
             //var iternations = 500;
             var passed = 0;
@@ -193,31 +194,35 @@ namespace D3vS1m.Application.AttackWpan.Test
 				throw new RuntimeException("The runtime validation failed.");
 			}
 
-			//Is battery depleted then stop the simulation
-			//Inject a method
-			//
-			//        await runtime.RunAsync((r) =>
-			//        {
+            //Is battery depleted then stop the simulation
+            //Inject a method
+            //
+            await runtime.RunAsync((r) =>
+            {
 
-			//            var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-			//            var networkArgs = networkSimulator.Arguments as NetworkArgs;
-			//            var devices = networkArgs.Network.Items;
-			//            //return maximumIteration or if battery gets depleted 
-			////divide the code base for better debug and functionality.
-			//            return devices
-			//                .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-			//                .Any(s => s.State.IsDepleted);
+					var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+					var networkArgs = networkSimulator.Arguments as NetworkArgs;
+					var devices = networkArgs.Network.Items;
+							//return maximumIteration or if battery gets depleted 
+					//divide the code base for better debug and functionality.
+					return !devices
+				//.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+				//.Any(s => s.State.IsDepleted);
+				
+				.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+				.All(s => s.State.IsDepleted);
 
-			//            //return false;
-			//        });
-		
-
-            await runtime.RunAsync(iternations);
-            
+					//return false;
+			 });
 
 
-            // assert
-            Log.Info($"Counter Value='{ args.Counter}'.");
+			//await runtime.RunAsync(iternations);
+
+			//add other assert for different events 
+
+			// assert
+			Log.Info($"Counter Value='{ args.Counter}'.");
+
             Assert.IsNotNull(args, "The argument should not be null");
 
 			Assert.AreEqual(iternations, passed, $"The runtime should have run '{iternations}' times instead of '{passed}'.");

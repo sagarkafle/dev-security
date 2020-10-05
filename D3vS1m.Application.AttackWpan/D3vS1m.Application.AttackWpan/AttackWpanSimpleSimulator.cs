@@ -195,9 +195,9 @@ namespace D3vS1m.Application.AttackWpan
             CurrentStateChargeCOnsumptionCsv.AppendLine(addNewLineCharge);
             //csv.AppendFormat(...)
             _args.Counter++;
-            File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
+            //File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
             
-            File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
+            //File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
             //File.WriteAllText(_args.victimNoderesultFilePath, victimNodeCsv.ToString());
             //File.WriteAllText(_args.normalNoderesultFilePath, normalNodeCsv.ToString());
         }
