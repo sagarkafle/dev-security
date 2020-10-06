@@ -28,6 +28,8 @@ namespace D3vS1m.Application.AttackWpan
         public string normalNoderesultFilePath { get; set; }
         public string CurrentStateVoltageCOnsumptionCsvFilePath { get; set; }
         public string CurrentStateChargeCOnsumptionCsvFilePath { get; set; }
+
+        public float dichargeAmountNormal { get; set; }
         public int sleepCounter { get; set; }
 
     }

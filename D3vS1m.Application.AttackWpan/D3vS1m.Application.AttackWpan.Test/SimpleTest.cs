@@ -70,7 +70,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 		{
             // arrange
             //var iternations = 10000;
-            //var iternations = 9720;
+            //var iternations = 2000;
             var iternations = 9718;
             //var iternations = 100;
             //var iternations = 500;
@@ -92,6 +92,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			attackArgument.CurrentStateChargeCOnsumptionCsvFilePath = ChargeCOnsumptionResultFilePath;
 			attackArgument.attackName = "BatteryExhaustionAttack";
 
+			attackArgument.dichargeAmountNormal = 0;
 			attackArgument.sleepCounter = 0;
 			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
 			//	.With(new AttackWpanArgs()));
@@ -200,28 +201,28 @@ namespace D3vS1m.Application.AttackWpan.Test
             await runtime.RunAsync((r) =>
             {
 
-					var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-					var networkArgs = networkSimulator.Arguments as NetworkArgs;
-					var devices = networkArgs.Network.Items;
-							//return maximumIteration or if battery gets depleted 
-					//divide the code base for better debug and functionality.
-					return !devices
-				//.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-				//.Any(s => s.State.IsDepleted);
-				
-				.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-				.All(s => s.State.IsDepleted);
+                var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+                var networkArgs = networkSimulator.Arguments as NetworkArgs;
+                var devices = networkArgs.Network.Items;
+                        //return maximumIteration or if battery gets depleted 
+                        //divide the code base for better debug and functionality.
+                        return !devices
+                    //.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+                    //.Any(s => s.State.IsDepleted);
 
-					//return false;
-			 });
+                    .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+                    .All(s => s.State.IsDepleted);
+
+                        //return false;
+                    });
 
 
-			//await runtime.RunAsync(iternations);
+            //await runtime.RunAsync(iternations);
 
-			//add other assert for different events 
+            //add other assert for different events 
 
-			// assert
-			Log.Info($"Counter Value='{ args.Counter}'.");
+            // assert
+            Log.Info($"Counter Value='{ args.Counter}'.");
 
             Assert.IsNotNull(args, "The argument should not be null");
 
