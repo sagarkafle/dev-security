@@ -85,6 +85,7 @@ namespace D3vS1m.Application.AttackWpan
             var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == normalNodeName);
             //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
 
+            //Normalnode 
             if (normalNode != null)
             {
                 //Log.Info($"Victim Node Found");
@@ -130,6 +131,7 @@ namespace D3vS1m.Application.AttackWpan
 
                 }
             }
+
             if (victimNode != null)
             {
                 //Log.Info($"Victim Node Found");
@@ -149,7 +151,7 @@ namespace D3vS1m.Application.AttackWpan
 
 
 
-                        //if the attack is made or not by comparing the charge consumption with normal node
+                        // Checking if the attack is made or not by comparing the charge consumption with normal node
 
                         if(_args.dichargeAmountNormal > battery.State.Now.Voltage)
                         {

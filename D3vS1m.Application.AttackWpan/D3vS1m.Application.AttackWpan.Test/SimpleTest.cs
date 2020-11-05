@@ -78,6 +78,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
 
+
+			//result filenames 
 			var victimNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputVictimNode.csv";
 			var normalNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputNormalNode.csv";
 			var VoltageCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateVOltageCOnsumption.csv";
