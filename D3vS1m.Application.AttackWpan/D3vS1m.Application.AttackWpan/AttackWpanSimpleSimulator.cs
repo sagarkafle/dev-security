@@ -20,6 +20,7 @@ namespace D3vS1m.Application.AttackWpan
 
         private AttackWpanArgs _args;
         private NetworkArgs _netargs;
+
          private StringBuilder victimNodeCsv  = new StringBuilder();
          private StringBuilder normalNodeCsv  = new StringBuilder();
          private StringBuilder CurrentStateVoltageCOnsumptionCsv  = new StringBuilder();
@@ -105,7 +106,7 @@ namespace D3vS1m.Application.AttackWpan
 
 
                         //Log.Info($"Normal Node Charge Consumption'{currentChargenormalNode}'.  Normal Node Remaining Charge'{remainingChargeNormalNode}'.");
-                        Log.Info($"Normal Node Initial Volatage'{normalNodebattery.State.Initial.Voltage}'.  Normal Node Remaining Voltage '{remainingVoltageNormalNode}'.");
+                        Log.Info($"Normal Node Initial Volatage'{normalNodebattery.State.Initial.Voltage}'.  Normal Node Remaining Voltage '{normalNodebattery.State.Now.Voltage}'.");
 
                         //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Initial.SelfDischarge}'");
                         //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Now.SelfDischarge}'");
@@ -148,15 +149,14 @@ namespace D3vS1m.Application.AttackWpan
                         //string createText = _args.Counter+1 + ".  Victim Node Remaining Charge : " + remainingCharge + "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
 
 
-
-
-
                         // Checking if the attack is made or not by comparing the charge consumption with normal node
 
+                        //Compare current voltage of the average value of the network.
                         if(_args.dichargeAmountNormal > battery.State.Now.Voltage)
                         {
                             Log.Info("Alert!!!! Attack is made !!!Alert");
                         }
+
                         //discharge  the battery manually with some number or by percentage
                         //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
                         //instance of battery pack simulator
@@ -176,7 +176,7 @@ namespace D3vS1m.Application.AttackWpan
                         if(sleepTime == 0)
                         {
                             Log.Info($"Attack Initiated.");
-                            batteryPackSimulator.Discharge(battery, 250, new TimeSpan(0, 0, 0, 10, 0));
+                            batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
                         }
 
                         
@@ -184,7 +184,7 @@ namespace D3vS1m.Application.AttackWpan
 
 
                         //Log.Info($"Victim Node Charge Consumption'{currentCharge}'.Victim Node Remaining Charge'{remainingCharge}'.");
-                        Log.Info($"Victim Node Initial Volatage'{battery.State.Initial.Voltage}'.  Victim Node Remaining Voltage '{remainingVoltageVictimNode}'.");
+                        Log.Info($"Victim Node Initial Volatage'{battery.State.Initial.Voltage}'.  Victim Node Remaining Voltage '{battery.State.Now.Voltage}'.");
                         //Log.Info($"Self Discharge of victim Node::'{battery.State.Initial.SelfDischarge}'");
                         //Log.Info($"Self Discharge of victim Node::'{battery.State.Now.SelfDischarge}'");
 

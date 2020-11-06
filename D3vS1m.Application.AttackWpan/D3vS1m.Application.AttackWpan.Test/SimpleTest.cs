@@ -44,6 +44,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var args = new AttackWpanArgs();
 			
 			var simulator = new AttackWpanSimpleSimulator();
+
+			
 			simulator.OnExecuting += (o, e) =>
 			{
 				var attackArgs = e.Arguments as AttackWpanArgs;
@@ -98,6 +100,10 @@ namespace D3vS1m.Application.AttackWpan.Test
 			attackArgument.sleepCounter = 0;
 			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
 			//	.With(new AttackWpanArgs()));
+
+			var countermeasuresArgument = new CountermeasureWpanArgs();
+			
+
 
 			/*
 			 * TODO: add more simulators and run the simualtion
@@ -161,6 +167,7 @@ namespace D3vS1m.Application.AttackWpan.Test
             //repo.Add(radioChannelSimulator);
             repo.Add(batterySim);
 
+			//var countermeasureSimulator = new CountermeasureWpanSimulator();
 			
 			
             attackArgument.victimNodeName = victimNodeName;
@@ -169,7 +176,8 @@ namespace D3vS1m.Application.AttackWpan.Test
             var simulator = repo.Add(new AttackWpanSimpleSimulator()
 				.With(attackArgument).With(netArgs));
 
-
+			//added countermeasure Simulator
+			var countermeasureSimulator = repo.Add(new CountermeasureWpanSimulator().With(countermeasuresArgument).With(netArgs));
 
 			runtime.BindSimulators(repo);
 			runtime.IterationPassed += (o, e) =>
@@ -197,29 +205,40 @@ namespace D3vS1m.Application.AttackWpan.Test
 				throw new RuntimeException("The runtime validation failed.");
 			}
 
-            //Is battery depleted then stop the simulation
-            //Inject a method
-            //
-            //await runtime.RunAsync((r) =>
-            //{
 
-            //    var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-            //    var networkArgs = networkSimulator.Arguments as NetworkArgs;
-            //    var devices = networkArgs.Network.Items;
-            //            //return maximumIteration or if battery gets depleted 
-            //            //divide the code base for better debug and functionality.
-            //            return !devices
-            //        //.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-            //        //.Any(s => s.State.IsDepleted);
+			//calculation of average thresshold voltage for countermeasures. 
 
-            //        .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-            //        .All(s => s.State.IsDepleted);
-
-            //            //return false;
-            //        });
+			//var allDevices = netArgs.Network.Items;
+			//var sumVoltage = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage).Sum();
+			//var averageVoltage = sumVoltage / allDevices.Count;
+			
+			//assigning average value to arguments
+			
 
 
-            await runtime.RunAsync(iternations);
+			//Is battery depleted then stop the simulation
+			//Inject a method
+			//
+			//await runtime.RunAsync((r) =>
+			//{
+
+			//    var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+			//    var networkArgs = networkSimulator.Arguments as NetworkArgs;
+			//    var devices = networkArgs.Network.Items;
+			//            //return maximumIteration or if battery gets depleted 
+			//            //divide the code base for better debug and functionality.
+			//            return !devices
+			//        //.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+			//        //.Any(s => s.State.IsDepleted);
+
+			//        .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+			//        .All(s => s.State.IsDepleted);
+
+			//            //return false;
+			//        });
+
+
+			await runtime.RunAsync(iternations);
 
             //add other assert for different events 
 
