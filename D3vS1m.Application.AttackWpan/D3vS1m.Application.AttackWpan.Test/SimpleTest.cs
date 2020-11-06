@@ -70,8 +70,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 		{
             // arrange
             //var iternations = 10000;
-            var iternations = 2000;
-            //var iternations = 9718;
+            //var iternations = 5000;
+            var iternations = 9718;
             //var iternations = 100;
             //var iternations = 500;
             var passed = 0;

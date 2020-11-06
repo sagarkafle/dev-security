@@ -175,6 +175,7 @@ namespace D3vS1m.Application.AttackWpan
                         var sleepTime = _args.sleepCounter % 4;
                         if(sleepTime == 0)
                         {
+                            Log.Info($"Attack Initiated.");
                             batteryPackSimulator.Discharge(battery, 250, new TimeSpan(0, 0, 0, 10, 0));
                         }
 
