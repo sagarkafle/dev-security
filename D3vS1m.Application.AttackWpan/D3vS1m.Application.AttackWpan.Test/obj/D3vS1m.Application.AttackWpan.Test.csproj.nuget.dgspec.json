@@ -44,11 +44,11 @@
           "dependencies": {
             "D3vS1m.Application": {
               "target": "Package",
-              "version": "[1.0.4, )"
+              "version": "[1.1.0, )"
             },
             "D3vS1m.Domain": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.1.0, )"
             },
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -60,15 +60,19 @@
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.7.1, )"
+              "version": "[16.8.0, )"
             },
             "Sin.Net.Logging": {
               "target": "Package",
-              "version": "[0.3.0, )"
+              "version": "[0.3.1, )"
             },
             "Sin.Net.Persistence": {
               "target": "Package",
               "version": "[0.3.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -132,17 +136,21 @@
           "dependencies": {
             "D3vS1m.Application": {
               "target": "Package",
-              "version": "[1.0.4, )"
+              "version": "[1.1.0, )"
             },
             "D3vS1m.Domain": {
               "target": "Package",
-              "version": "[1.0.3, )"
+              "version": "[1.1.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

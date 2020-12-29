@@ -73,6 +73,11 @@ namespace D3vS1m.Application.AttackWpan
             //var iterationNumberForVictimNodeBatteryDepletion;
 
             var victimNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
+            //if (!victimNode.IsActive)
+            //{
+            //    Log.Info("Victim Node not active");
+            //}
+            var networkAvailability = _netargs.Network.Availability();
             //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
             float victimNodeVoltageNowCsv = 0;
             float normalNodeVoltageNowCsv = 0;
@@ -138,6 +143,8 @@ namespace D3vS1m.Application.AttackWpan
                 //Log.Info($"Victim Node Found");
                 if (victimNode.Parts.HasPowerSupply)
                 {
+                    var victimNodeControls = victimNode.Controls;
+
                     var victimNodePowerSupply = victimNode.Parts.GetPowerSupply();
                     var battery = victimNodePowerSupply as BatteryPack;
 
@@ -152,10 +159,10 @@ namespace D3vS1m.Application.AttackWpan
                         // Checking if the attack is made or not by comparing the charge consumption with normal node
 
                         //Compare current voltage of the average value of the network.
-                        if(_args.dichargeAmountNormal > battery.State.Now.Voltage)
-                        {
-                            Log.Info("Alert!!!! Attack is made !!!Alert");
-                        }
+                        //if(_args.dichargeAmountNormal > battery.State.Now.Voltage)
+                        //{
+                        //    Log.Info("Alert!!!! Attack is made !!!Alert");
+                        //}
 
                         //discharge  the battery manually with some number or by percentage
                         //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
@@ -173,11 +180,21 @@ namespace D3vS1m.Application.AttackWpan
                             Log.Info($"Argument COunter'{_args.Counter}'.  SleepCounter '{_args.sleepCounter}'.");
                         }
                         var sleepTime = _args.sleepCounter % 4;
-                        if(sleepTime == 0)
+                        if (victimNode.IsActive)
                         {
-                            Log.Info($"Attack Initiated.");
-                            batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
+                            Log.Info($"Victim Node Active");
+
                         }
+                        else
+                        {
+                            Log.Info($"Victim Node Not Active");
+                        }
+                        if(sleepTime == 0  && victimNode.IsActive)
+                        {
+                            Log.Info($"Attack Initiated.Check2");
+                            batteryPackSimulator.Discharge(battery, 1000, new TimeSpan(0, 0, 0, 10, 0));
+                        }
+                        
 
                         
                         //batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
@@ -217,9 +234,9 @@ namespace D3vS1m.Application.AttackWpan
             CurrentStateChargeCOnsumptionCsv.AppendLine(addNewLineCharge);
             //csv.AppendFormat(...)
             _args.Counter++;
-            //File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
+            File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
 
-            //File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
+            File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
             //File.WriteAllText(_args.victimNoderesultFilePath, victimNodeCsv.ToString());
             //File.WriteAllText(_args.normalNoderesultFilePath, normalNodeCsv.ToString());
         }

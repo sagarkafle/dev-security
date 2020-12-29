@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="D3vS1m.Application" Version="1.0.4" />
-    <PackageReference Include="D3vS1m.Domain" Version="1.0.3" />
+    <PackageReference Include="D3vS1m.Application" Version="1.1.0" />
+    <PackageReference Include="D3vS1m.Domain" Version="1.1.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

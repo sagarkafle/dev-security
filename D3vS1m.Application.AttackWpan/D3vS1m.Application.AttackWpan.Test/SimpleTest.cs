@@ -11,11 +11,13 @@ using D3vS1m.Application.Validation;
 using D3vS1m.Domain.Runtime;
 using D3vS1m.Domain.Simulation;
 using D3vS1m.Domain.System.Exceptions;
+using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sin.Net.Domain.Persistence.Logging;
 using System.Reflection.Metadata.Ecma335;
 using System.Linq;
 using FluentValidation.Validators;
+using System.Reflection;
 
 namespace D3vS1m.Application.AttackWpan.Test
 {
@@ -87,7 +89,14 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var VoltageCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateVOltageCOnsumption.csv";
 			var ChargeCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateChargeCOnsumption.csv";
 
-			var runtime = new RuntimeController(new BasicValidator());
+			var configLocation = Assembly.GetEntryAssembly().Location;
+
+
+			String attackNameFromConfigFile1 = ConfigurationManager.AppSettings["AttackName"];
+
+            //var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
+
+            var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
 			attackArgument.victimNoderesultFilePath = victimNodeResultFilePath;
@@ -118,9 +127,9 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var netArgs = new NetworkArgs();
 
             //Added necessary argument to network simulator#
-            //networkSimulator.With(netArgs).With(comArgs).With(radioArgs);
             networkSimulator.With(netArgs);
             _network = netArgs.Network;
+			//Adding Device from JSOn file into network.  
             _network.AddRange(ImportDevices().ToArray());
 
 
