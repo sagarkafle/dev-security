@@ -89,10 +89,15 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var VoltageCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateVOltageCOnsumption.csv";
 			var ChargeCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateChargeCOnsumption.csv";
 
-			var configLocation = Assembly.GetEntryAssembly().Location;
+			ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+			map.ExeConfigFilename = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\App.config";
+			Configuration config =
+			   ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
 
+			var getValFromconfig = config.AppSettings;
 
-			String attackNameFromConfigFile1 = ConfigurationManager.AppSettings["AttackName"];
+            var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
+            var attackNameFromConfigFile1 = getValFromconfig.Settings["numberofdevice"].Value;
 
             //var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
 

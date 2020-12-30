@@ -3,6 +3,7 @@ C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Ap
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.dll.config
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.deps.json
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.runtimeconfig.json
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.runtimeconfig.dev.json
@@ -120,4 +121,3 @@ C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Ap
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.dll
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.pdb
 C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.genruntimeconfig.cache
-C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\bin\Debug\netcoreapp3.1\D3vS1m.Application.AttackWpan.Test.dll.config

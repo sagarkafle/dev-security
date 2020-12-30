@@ -9,8 +9,8 @@ namespace D3vS1m.Application.AttackWpan
         // WPAN Attack Models
         public static class AttackInWpan
         {
-            public const string Key = "aip";
-            public const string Name = "Attack In Wpan_Name";
+            public const string Key = "aInWpan";
+            public const string Name = "Attack In Wpan";
         }
     }
 }
