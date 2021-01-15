@@ -27,7 +27,9 @@ namespace D3vS1m.Application.AttackWpan
         public string victimNoderesultFilePath { get; set; }
         public string normalNoderesultFilePath { get; set; }
         public string CurrentStateVoltageCOnsumptionCsvFilePath { get; set; }
+        //public string CurrentStateVoltageCOnsumptionOutputFilePath { get; set; }
         public string CurrentStateChargeCOnsumptionCsvFilePath { get; set; }
+        //public string CurrentStateVoltageCOnsumptionOutputFilePath { get; set; }
 
         public float dichargeAmountNormal { get; set; }
 

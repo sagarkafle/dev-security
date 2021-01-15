@@ -44,35 +44,50 @@ namespace D3vS1m.Application.AttackWpan
 
             allDevices.ForEach(d =>
             {
-                
-            var currentVoltage = ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage;
-            var currentCharge = ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Charge;
+
+                var currentDeviceBattery = ((BatteryPack)d.Parts.GetPowerSupply());
+                var currentVoltage = currentDeviceBattery.State.Now.Voltage;
+                var currentCharge = currentDeviceBattery.State.Now.Charge;
 
                 var newSumVoltage = totalVoltage - currentVoltage;
-                var newSumCharge = totalCharge - currentCharge;
 
                 var newAverageVoltage = newSumVoltage / (allDevices.Count - 1);
-                var newAverageCharge = newSumCharge / (allDevices.Count - 1);
-
 
                 var newCheckVoltage = newAverageVoltage * 0.9;
-                var newCheckCharge = newAverageCharge * 0.9;
+                //var newCheckVoltage = newAverageVoltage * _countermeasuresArgs.detectPercent;
 
-                if (currentVoltage < newCheckVoltage)
+                //avergae voltage subtract from average voltage
+                var cuttOfvoltage = ((BatteryPack)d.Parts.GetPowerSupply()).CutoffVoltage;
+
+                var newCheckVoltage1 = (newAverageVoltage - cuttOfvoltage)*0.1;
+
+                var checkVoltage2 = newAverageVoltage - newCheckVoltage1;
+
+
+                //var newCheckCharge = newAverageCharge * 0.9;
+
+                if (currentVoltage < checkVoltage2)
                 //if (currentCharge < newCheckCharge)
                 {
 
                     //Log.Info($"Current Voltage'{currentVoltage}':New Check Voltage'{newCheckVoltage}'");
 
-                    Log.Info($"averageVoltage '{averageVoltage}':newAverageVoltage'{newAverageVoltage}'");
-                    Log.Info($"totalVoltage '{totalVoltage}':New newSumVoltage '{newSumVoltage}'");
-                    Log.Info($"Current Voltage'{currentVoltage}':New Check Voltage'{newCheckVoltage}'");  
+                    //Log.Info($"averageVoltage '{averageVoltage}':newAverageVoltage'{newAverageVoltage}'");
+                    //Log.Info($"totalVoltage '{totalVoltage}':New newSumVoltage '{newSumVoltage}'");
+                    //Log.Info($"Current Voltage'{currentVoltage}':New Check Voltage'{newCheckVoltage}'");  
 
-                    Log.Info($"averageCharge '{averageCharge}':newAverageCharge'{newAverageCharge}'");
-                    Log.Info($"totalCharge '{totalCharge}':New newSumCharge '{newSumCharge}'");
-                    Log.Info($"Current Charge'{currentCharge}':New Check CHarge'{newCheckCharge}'");
+                    //Log.Info($"averageCharge '{averageCharge}':newAverageCharge'{newAverageCharge}'");
+                    //Log.Info($"totalCharge '{totalCharge}':New newSumCharge '{newSumCharge}'");
+                    //Log.Info($"Current Charge'{currentCharge}':New Check CHarge'{newCheckCharge}'");
 
-
+                    //if (_countermeasuresArgs.applyCountermeasure)
+                    //{
+                    //    d.Controls.Off();
+                    //}
+                    //if (_countermeasuresArgs.generateAlert)
+                    //{
+                    //    Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
+                    //}
                     //Check the flag for on and off of device
                     d.Controls.Off();
                     Log.Info($"Device turned off countermeasureApplied");

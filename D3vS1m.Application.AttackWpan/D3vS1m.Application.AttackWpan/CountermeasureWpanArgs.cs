@@ -15,6 +15,14 @@ namespace D3vS1m.Application.AttackWpan
 
         public float averageVoltage { get; set; }
         public float averageCharge { get; set; }
+
+        public bool applyCountermeasure { get; set; }
+        public bool generateAlert { get; set; }
+
+       public String responsibleStakeholder { get; set; }
+
+        public float detectPercent { get; set; }
+
         public override void Reset()
         {
             //throw new NotImplementedException();

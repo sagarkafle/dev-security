@@ -67,7 +67,8 @@ namespace D3vS1m.Application.AttackWpan
                 //throwing exception
                 throw new System.ArgumentException("Network Arguments cannot be null", "_netArgs");
             }
- 
+            var allDevices = _netargs.Network.Items;
+
             var victimNodeName = _args.victimNodeName;
             var normalNodeName = _args.normalNodeName;
             //var iterationNumberForVictimNodeBatteryDepletion;
@@ -224,16 +225,30 @@ namespace D3vS1m.Application.AttackWpan
                 //hasPowerSupply
                 //victimNode.Parts
             }
-   
+
+            //average remaining voltage and charge
+            var totalVoltage = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage).Sum();
+            var totalCharge = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Charge).Sum();
+
+            var averageVoltage = totalVoltage / allDevices.Count;
+            var averageCharge = totalCharge / allDevices.Count;
+            Log.Info("Voltage Consumption Average:" + averageVoltage);
+            Log.Info("Charge Consumption Average:" + averageCharge);
+
 
             //Current node Volt consumption append into csv 
-            string addNewLine = string.Format("{0},{1},{2}", _args.Counter, normalNodeVoltageNowCsv, victimNodeVoltageNowCsv);
+            //Current node Volt consumption append into csv 
+            string addNewLine = string.Format("{0},{1},{2},{3}", _args.Counter, normalNodeVoltageNowCsv, victimNodeVoltageNowCsv,averageVoltage);
             CurrentStateVoltageCOnsumptionCsv.AppendLine(addNewLine);
             //Current node Charge consumption append into csv 
-            string addNewLineCharge = string.Format("{0},{1},{2}", _args.Counter, normalNodeRemainingChargeCsv, victimNodeRemainingChargeCsv);
+            string addNewLineCharge = string.Format("{0},{1},{2},{3}", _args.Counter, normalNodeRemainingChargeCsv, victimNodeRemainingChargeCsv,2700-averageCharge);
             CurrentStateChargeCOnsumptionCsv.AppendLine(addNewLineCharge);
             //csv.AppendFormat(...)
             _args.Counter++;
+
+
+
+
             File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
 
             File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());

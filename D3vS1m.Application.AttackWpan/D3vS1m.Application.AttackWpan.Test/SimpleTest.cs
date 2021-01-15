@@ -97,11 +97,13 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var getValFromconfig = config.AppSettings;
 
             var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
-            var attackNameFromConfigFile1 = getValFromconfig.Settings["numberofdevice"].Value;
+			var counterMeasuresOn = getValFromconfig.Settings["applyCountermeasures"].Value;
+           
+			//var attackNameFromConfigFile1 = getValFromconfig.Settings["numberofdevice"].Value;
 
-            //var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
+			//var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
 
-            var runtime = new RuntimeController(new BasicValidator());
+			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
 			attackArgument.victimNoderesultFilePath = victimNodeResultFilePath;
@@ -189,6 +191,16 @@ namespace D3vS1m.Application.AttackWpan.Test
 
             var simulator = repo.Add(new AttackWpanSimpleSimulator()
 				.With(attackArgument).With(netArgs));
+
+
+			if (counterMeasuresOn == "TRUE")
+			{
+				Log.Info("Value True");
+			}
+			else
+			{
+				Log.Info("Value False");
+			}
 
 			//added countermeasure Simulator
 			var countermeasureSimulator = repo.Add(new CountermeasureWpanSimulator().With(countermeasuresArgument).With(netArgs));
