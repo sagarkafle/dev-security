@@ -154,7 +154,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			netArgs.Network.Items.ForEach(d =>
 			{
 				_battery = new BatteryPack();
-				_battery.CutoffVoltage = 1.2F;
+				_battery.CutoffVoltage = 1.0F;
                 _battery.State.Init(_battery);
 
                 //var powerSupply = d.Parts.GetPowerSupply();

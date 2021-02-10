@@ -195,6 +195,10 @@ namespace D3vS1m.Application.AttackWpan
                             Log.Info($"Attack Initiated.Check2");
                             batteryPackSimulator.Discharge(battery, 1000, new TimeSpan(0, 0, 0, 10, 0));
                         }
+                        if (!victimNode.IsActive)
+                        {
+                            Log.Info("Battery Exhausted");
+                        }
                         
 
                         

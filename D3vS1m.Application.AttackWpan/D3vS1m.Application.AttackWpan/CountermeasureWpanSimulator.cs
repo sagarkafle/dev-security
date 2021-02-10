@@ -53,20 +53,21 @@ namespace D3vS1m.Application.AttackWpan
 
                 var newAverageVoltage = newSumVoltage / (allDevices.Count - 1);
 
-                var newCheckVoltage = newAverageVoltage * 0.9;
+                //var newCheckVoltage = newAverageVoltage * 0.9;
                 //var newCheckVoltage = newAverageVoltage * _countermeasuresArgs.detectPercent;
 
                 //avergae voltage subtract from average voltage
-                var cuttOfvoltage = ((BatteryPack)d.Parts.GetPowerSupply()).CutoffVoltage;
+                var cuttOfvoltage = currentDeviceBattery.CutoffVoltage;
 
-                var newCheckVoltage1 = (newAverageVoltage - cuttOfvoltage)*0.1;
+                //var checkVoltage = (newAverageVoltage - cuttOfvoltage)*(1 - _countermeasuresArgs.detectPercent);
+                var checkVoltage = (newAverageVoltage - cuttOfvoltage)*0.1;
 
-                var checkVoltage2 = newAverageVoltage - newCheckVoltage1;
+                var finalCheckVoltage = newAverageVoltage - checkVoltage;
 
 
                 //var newCheckCharge = newAverageCharge * 0.9;
 
-                if (currentVoltage < checkVoltage2)
+                if (currentVoltage < finalCheckVoltage)
                 //if (currentCharge < newCheckCharge)
                 {
 
@@ -89,7 +90,7 @@ namespace D3vS1m.Application.AttackWpan
                     //    Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
                     //}
                     //Check the flag for on and off of device
-                    d.Controls.Off();
+                    //d.Controls.Off();
                     Log.Info($"Device turned off countermeasureApplied");
 
                 }
