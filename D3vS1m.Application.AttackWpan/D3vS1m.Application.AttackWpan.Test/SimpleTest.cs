@@ -75,7 +75,7 @@ namespace D3vS1m.Application.AttackWpan.Test
             // arrange
             //var iternations = 10000;
             //var iternations = 5000;
-            var iternations = 9718;
+            var iternations = 25000;
             //var iternations = 100;
             //var iternations = 500;
             var passed = 0;
@@ -97,8 +97,13 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var getValFromconfig = config.AppSettings;
 
             var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
-			var counterMeasuresOn = getValFromconfig.Settings["applyCountermeasures"].Value;
+			//var counterMeasuresOn = false;
            
+
+			//if(getValFromconfig.Settings["applyCountermeasures"].Value == "TRUE")
+   //         {
+			//	counterMeasuresOn = true;
+   //         }
 			//var attackNameFromConfigFile1 = getValFromconfig.Settings["numberofdevice"].Value;
 
 			//var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
@@ -118,19 +123,22 @@ namespace D3vS1m.Application.AttackWpan.Test
 			//	.With(new AttackWpanArgs()));
 
 			var countermeasuresArgument = new CountermeasureWpanArgs();
-			
+			countermeasuresArgument.applyCountermeasure = false;
+            if (getValFromconfig.Settings["applyCountermeasures"].Value == "TRUE")
+            {
+				countermeasuresArgument.applyCountermeasure = true;
+			}
 
-
-			/*
+            /*
 			 * TODO: add more simulators and run the simualtion
 			 * - You need: Network, Devices, Energy, Radio Channel
 			 * - Add all arguments you need to your simulator with the With() method
 			 * - Create a break condition to end the simulation runtime
 			 */
 
-			//Initialization of network simulator
+            //Initialization of network simulator
 
-			var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
+            var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
 			var netArgs = new NetworkArgs();
 
             //Added necessary argument to network simulator#
@@ -154,15 +162,17 @@ namespace D3vS1m.Application.AttackWpan.Test
 			netArgs.Network.Items.ForEach(d =>
 			{
 				_battery = new BatteryPack();
-				_battery.CutoffVoltage = 1.0F;
-                _battery.State.Init(_battery);
+				//_battery.CutoffVoltage = 1.0F;
+				_battery.State.Init(_battery);
+				
 
-                //var powerSupply = d.Parts.GetPowerSupply();
-                d.Parts.Add(_battery);
+				//var powerSupply = d.Parts.GetPowerSupply();
+				d.Parts.Add(_battery);
 			});
 
-			
-			
+
+
+
 
 
 			var batterySim = new BatteryPackSimulator();
@@ -193,14 +203,14 @@ namespace D3vS1m.Application.AttackWpan.Test
 				.With(attackArgument).With(netArgs));
 
 
-			if (counterMeasuresOn == "TRUE")
-			{
-				Log.Info("Value True");
-			}
-			else
-			{
-				Log.Info("Value False");
-			}
+			//if (counterMeasuresOn == "TRUE")
+			//{
+			//	Log.Info("Value True");
+			//}
+			//else
+			//{
+			//	Log.Info("Value False");
+			//}
 
 			//added countermeasure Simulator
 			var countermeasureSimulator = repo.Add(new CountermeasureWpanSimulator().With(countermeasuresArgument).With(netArgs));
@@ -232,39 +242,39 @@ namespace D3vS1m.Application.AttackWpan.Test
 			}
 
 
-			//calculation of average thresshold voltage for countermeasures. 
+            //calculation of average thresshold voltage for countermeasures. 
 
-			//var allDevices = netArgs.Network.Items;
-			//var sumVoltage = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage).Sum();
-			//var averageVoltage = sumVoltage / allDevices.Count;
-			
-			//assigning average value to arguments
-			
+            //var allDevices = netArgs.Network.Items;
+            //var sumVoltage = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage).Sum();
+            //var averageVoltage = sumVoltage / allDevices.Count;
 
-
-			//Is battery depleted then stop the simulation
-			//Inject a method
-			//
-			//await runtime.RunAsync((r) =>
-			//{
-
-			//    var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
-			//    var networkArgs = networkSimulator.Arguments as NetworkArgs;
-			//    var devices = networkArgs.Network.Items;
-			//            //return maximumIteration or if battery gets depleted 
-			//            //divide the code base for better debug and functionality.
-			//            return !devices
-			//        //.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-			//        //.Any(s => s.State.IsDepleted);
-
-			//        .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
-			//        .All(s => s.State.IsDepleted);
-
-			//            //return false;
-			//        });
+            //assigning average value to arguments
 
 
-			await runtime.RunAsync(iternations);
+
+            //Is battery depleted then stop the simulation
+            //Inject a method
+            //
+            await runtime.RunAsync((r) =>
+            {
+
+                var networkSimulator = r.Simulators[Domain.System.Enumerations.SimulationTypes.Network] as PeerToPeerNetworkSimulator;
+                var networkArgs = networkSimulator.Arguments as NetworkArgs;
+                var devices = networkArgs.Network.Items;
+                //return maximumIteration or if battery gets depleted 
+                //divide the code base for better debug and functionality.
+                return !devices
+            //.Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+            //.Any(s => s.State.IsDepleted);
+
+            .Select(s => s.Parts.GetPowerSupply() as BatteryPack)
+            .All(s => s.State.IsDepleted);
+
+                //return false;
+            });
+
+
+            //await runtime.RunAsync(iternations);
 
             //add other assert for different events 
 

@@ -81,10 +81,10 @@ namespace D3vS1m.Application.AttackWpan
                     //Log.Info($"totalCharge '{totalCharge}':New newSumCharge '{newSumCharge}'");
                     //Log.Info($"Current Charge'{currentCharge}':New Check CHarge'{newCheckCharge}'");
 
-                    //if (_countermeasuresArgs.applyCountermeasure)
-                    //{
-                    //    d.Controls.Off();
-                    //}
+                    if (_countermeasuresArgs.applyCountermeasure)
+                    {
+                        d.Controls.Off();
+                    }
                     //if (_countermeasuresArgs.generateAlert)
                     //{
                     //    Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
