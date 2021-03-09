@@ -74,12 +74,8 @@ namespace D3vS1m.Application.AttackWpan
             //var iterationNumberForVictimNodeBatteryDepletion;
 
             var victimNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == victimNodeName);
-            //if (!victimNode.IsActive)
-            //{
-            //    Log.Info("Victim Node not active");
-            //}
+
             var networkAvailability = _netargs.Network.Availability();
-            //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
             float victimNodeVoltageNowCsv = 0;
             float normalNodeVoltageNowCsv = 0;
 
@@ -90,12 +86,10 @@ namespace D3vS1m.Application.AttackWpan
             float normalNodeRemainingChargeCsv = 0;
 
             var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == normalNodeName);
-            //var normalNode = _netargs.Network.Items.FirstOrDefault(o => o.Name == "Tag_0x11");
 
             //Normalnode 
             if (normalNode != null)
             {
-                //Log.Info($"Victim Node Found");
                 if (normalNode.Parts.HasPowerSupply)
                 {
                     var normalNodePowerSupply = normalNode.Parts.GetPowerSupply();
@@ -111,20 +105,9 @@ namespace D3vS1m.Application.AttackWpan
                         _args.dichargeAmountNormal = (float)normalNodebattery.State.Now.Voltage;
 
 
-                        //Log.Info($"Normal Node Charge Consumption'{currentChargenormalNode}'.  Normal Node Remaining Charge'{remainingChargeNormalNode}'.");
                         Log.Info($"Normal Node Initial Volatage'{normalNodebattery.State.Initial.Voltage}'.  Normal Node Remaining Voltage '{normalNodebattery.State.Now.Voltage}'.");
 
-                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Initial.SelfDischarge}'");
-                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.State.Now.SelfDischarge}'");
-                        //Log.Info($"SDR Initial victim Node::'{normalNodebattery.State.Initial.SDR}'");
-                        //Log.Info($"SDR Current victim Node::'{normalNodebattery.State.Now.SDR}'");
-
-                        //Log.Info($"Self Discharge of victim Node::'{normalNodebattery.Polynom.}'");
-
-                        //var first = currentChargenormalNode.ToString();
-                        //var second = remainingChargeNormalNode.ToString();
-
-                        //_args.dichargeAmountNormal = ;
+                        
                         var first = normalNodebattery.State.Now.ElapsedTime.TotalSeconds;
                         normalNodeCurrentCharge = normalNodebattery.State.Now.Charge;
                         normalNodeRemainingChargeCsv = remainingChargeNormalNode;
@@ -141,7 +124,6 @@ namespace D3vS1m.Application.AttackWpan
 
             if (victimNode != null)
             {
-                //Log.Info($"Victim Node Found");
                 if (victimNode.Parts.HasPowerSupply)
                 {
                     var victimNodeControls = victimNode.Controls;
@@ -154,19 +136,8 @@ namespace D3vS1m.Application.AttackWpan
                         var currentCharge = battery.State.Now.Charge;
                         var remainingCharge = battery.State.Initial.Charge - currentCharge;
                         var remainingVoltageVictimNode = battery.State.Initial.Voltage - battery.State.Now.Voltage;
-                        //string createText = _args.Counter+1 + ".  Victim Node Remaining Charge : " + remainingCharge + "  Victim Node Charge Consumption : " + currentCharge + Environment.NewLine;
-
-
-                        // Checking if the attack is made or not by comparing the charge consumption with normal node
-
-                        //Compare current voltage of the average value of the network.
-                        //if(_args.dichargeAmountNormal > battery.State.Now.Voltage)
-                        //{
-                        //    Log.Info("Alert!!!! Attack is made !!!Alert");
-                        //}
-
-                        //discharge  the battery manually with some number or by percentage
-                        //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
+                       
+                        
                         //instance of battery pack simulator
 
 
@@ -193,6 +164,7 @@ namespace D3vS1m.Application.AttackWpan
                         if(sleepTime == 0  && victimNode.IsActive)
                         {
                             Log.Info($"Attack Initiated.Check2");
+                            //Use the discharge function to dicharge the battery of the victimNode by provideing time and discharge amount
                             batteryPackSimulator.Discharge(battery, 1000, new TimeSpan(0, 0, 0, 10, 0));
                         }
                         if (!victimNode.IsActive)
@@ -202,16 +174,10 @@ namespace D3vS1m.Application.AttackWpan
                         
 
                         
-                        //batteryPackSimulator.Discharge(battery, 500, new TimeSpan(0, 0, 0, 10, 0));
 
 
-                        //Log.Info($"Victim Node Charge Consumption'{currentCharge}'.Victim Node Remaining Charge'{remainingCharge}'.");
                         Log.Info($"Victim Node Initial Volatage'{battery.State.Initial.Voltage}'.  Victim Node Remaining Voltage '{battery.State.Now.Voltage}'.");
-                        //Log.Info($"Self Discharge of victim Node::'{battery.State.Initial.SelfDischarge}'");
-                        //Log.Info($"Self Discharge of victim Node::'{battery.State.Now.SelfDischarge}'");
-
-                        //Log.Info($"SDR Initial victim Node::'{battery.State.Initial.SDR}'");
-                        //Log.Info($"SDR Current victim Node::'{battery.State.Now.SDR}'");
+                       
 
                         var first = battery.State.Now.ElapsedTime.TotalSeconds;
                          victimNodeCurrentCharge = battery.State.Now.Charge;
@@ -226,8 +192,7 @@ namespace D3vS1m.Application.AttackWpan
                     }
                    
                 }
-                //hasPowerSupply
-                //victimNode.Parts
+                
             }
 
             //average remaining voltage and charge
@@ -256,8 +221,7 @@ namespace D3vS1m.Application.AttackWpan
             //File.WriteAllText(_args.CurrentStateVoltageCOnsumptionCsvFilePath, CurrentStateVoltageCOnsumptionCsv.ToString());
 
             //File.WriteAllText(_args.CurrentStateChargeCOnsumptionCsvFilePath, CurrentStateChargeCOnsumptionCsv.ToString());
-            //File.WriteAllText(_args.victimNoderesultFilePath, victimNodeCsv.ToString());
-            //File.WriteAllText(_args.normalNoderesultFilePath, normalNodeCsv.ToString());
+
         }
 
         public override string Name => AttackWpanModule.AttackInWpan.Name;

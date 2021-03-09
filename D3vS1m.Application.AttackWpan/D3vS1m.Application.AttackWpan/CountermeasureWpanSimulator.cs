@@ -53,34 +53,19 @@ namespace D3vS1m.Application.AttackWpan
 
                 var newAverageVoltage = newSumVoltage / (allDevices.Count - 1);
 
-                //var newCheckVoltage = newAverageVoltage * 0.9;
-                //var newCheckVoltage = newAverageVoltage * _countermeasuresArgs.detectPercent;
-
-                //avergae voltage subtract from average voltage
                 var cuttOfvoltage = currentDeviceBattery.CutoffVoltage;
 
-                //var checkVoltage = (newAverageVoltage - cuttOfvoltage)*(1 - _countermeasuresArgs.detectPercent);
                 var checkVoltage = (newAverageVoltage - cuttOfvoltage)*0.1;
 
                 var finalCheckVoltage = newAverageVoltage - checkVoltage;
 
 
-                //var newCheckCharge = newAverageCharge * 0.9;
 
                 if (currentVoltage < finalCheckVoltage)
                 //if (currentCharge < newCheckCharge)
                 {
 
-                    //Log.Info($"Current Voltage'{currentVoltage}':New Check Voltage'{newCheckVoltage}'");
-
-                    //Log.Info($"averageVoltage '{averageVoltage}':newAverageVoltage'{newAverageVoltage}'");
-                    //Log.Info($"totalVoltage '{totalVoltage}':New newSumVoltage '{newSumVoltage}'");
-                    //Log.Info($"Current Voltage'{currentVoltage}':New Check Voltage'{newCheckVoltage}'");  
-
-                    //Log.Info($"averageCharge '{averageCharge}':newAverageCharge'{newAverageCharge}'");
-                    //Log.Info($"totalCharge '{totalCharge}':New newSumCharge '{newSumCharge}'");
-                    //Log.Info($"Current Charge'{currentCharge}':New Check CHarge'{newCheckCharge}'");
-
+                  
                     if (_countermeasuresArgs.applyCountermeasure)
                     {
                         d.Controls.Off();
@@ -89,13 +74,11 @@ namespace D3vS1m.Application.AttackWpan
                     //{
                     //    Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
                     //}
-                    //Check the flag for on and off of device
-                    //d.Controls.Off();
+                
                     Log.Info($"Device turned off countermeasureApplied");
 
                 }
             });
-            //Log.Info($"Average Voltage'{averageVoltage}'");
             base.AfterExecution();
         }
         public CountermeasureWpanSimulator() : this(null)

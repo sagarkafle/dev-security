@@ -73,11 +73,8 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
             // arrange
-            //var iternations = 9718;
-            //var iternations = 5000;
-            var iternations = 25000;
-            //var iternations = 100;
-            //var iternations = 500;
+            var iternations = 9718;
+
             var passed = 0;
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
@@ -97,16 +94,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var getValFromconfig = config.AppSettings;
 
             var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
-			//var counterMeasuresOn = false;
-           
-
-			//if(getValFromconfig.Settings["applyCountermeasures"].Value == "TRUE")
-   //         {
-			//	counterMeasuresOn = true;
-   //         }
-			//var attackNameFromConfigFile1 = getValFromconfig.Settings["numberofdevice"].Value;
-
-			//var attackNameFromConfigFile = System.Configuration.ConfigurationSettings.AppSettings["AttackName"];
+			
 
 			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
@@ -119,8 +107,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 			attackArgument.dichargeAmountNormal = 0;
 			attackArgument.sleepCounter = 0;
-			//var simulator = repo.Add(new AttackWpanSimpleSimulator()
-			//	.With(new AttackWpanArgs()));
+			
 
 			var countermeasuresArgument = new CountermeasureWpanArgs();
 			countermeasuresArgument.applyCountermeasure = false;
@@ -129,13 +116,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 				countermeasuresArgument.applyCountermeasure = true;
 			}
 
-            /*
-			 * TODO: add more simulators and run the simualtion
-			 * - You need: Network, Devices, Energy, Radio Channel
-			 * - Add all arguments you need to your simulator with the With() method
-			 * - Create a break condition to end the simulation runtime
-			 */
-
+           
             //Initialization of network simulator
 
             var networkSimulator = new PeerToPeerNetworkSimulator(runtime);
@@ -162,11 +143,11 @@ namespace D3vS1m.Application.AttackWpan.Test
 			netArgs.Network.Items.ForEach(d =>
 			{
 				_battery = new BatteryPack();
-				//_battery.CutoffVoltage = 1.0F;
+				_battery.CutoffVoltage = 1.0F;
 				_battery.State.Init(_battery);
 				
 
-				//var powerSupply = d.Parts.GetPowerSupply();
+				
 				d.Parts.Add(_battery);
 			});
 
@@ -190,10 +171,8 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 
             repo.Add(networkSimulator);
-            //repo.Add(radioChannelSimulator);
             repo.Add(batterySim);
 
-			//var countermeasureSimulator = new CountermeasureWpanSimulator();
 			
 			
             attackArgument.victimNodeName = victimNodeName;
@@ -203,15 +182,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 				.With(attackArgument).With(netArgs));
 
 
-			//if (counterMeasuresOn == "TRUE")
-			//{
-			//	Log.Info("Value True");
-			//}
-			//else
-			//{
-			//	Log.Info("Value False");
-			//}
-
+		
 			//added countermeasure Simulator
 			var countermeasureSimulator = repo.Add(new CountermeasureWpanSimulator().With(countermeasuresArgument).With(netArgs));
 
@@ -242,13 +213,7 @@ namespace D3vS1m.Application.AttackWpan.Test
 			}
 
 
-            //calculation of average thresshold voltage for countermeasures. 
-
-            //var allDevices = netArgs.Network.Items;
-            //var sumVoltage = allDevices.Select(d => ((BatteryPack)d.Parts.GetPowerSupply()).State.Now.Voltage).Sum();
-            //var averageVoltage = sumVoltage / allDevices.Count;
-
-            //assigning average value to arguments
+           
 
 
 
