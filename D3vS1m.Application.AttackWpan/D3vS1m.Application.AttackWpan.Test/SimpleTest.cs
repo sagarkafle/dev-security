@@ -73,7 +73,7 @@ namespace D3vS1m.Application.AttackWpan.Test
         public async Task RunAttackSimulatorWithRuntime()
 		{
             // arrange
-            //var iternations = 10000;
+            //var iternations = 9718;
             //var iternations = 5000;
             var iternations = 25000;
             //var iternations = 100;
