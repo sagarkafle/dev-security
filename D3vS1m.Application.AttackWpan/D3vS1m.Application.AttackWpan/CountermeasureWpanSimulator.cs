@@ -21,7 +21,7 @@ namespace D3vS1m.Application.AttackWpan
 
 
 
-
+        
         public override string Name => CountermeasureWpanModel.CountermeasureInWpan.Name;
 
         public override string Key => CountermeasureWpanModel.CountermeasureInWpan.Key;
