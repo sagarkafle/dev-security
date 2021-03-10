@@ -55,7 +55,7 @@ namespace D3vS1m.Application.AttackWpan
 
                 var cuttOfvoltage = currentDeviceBattery.CutoffVoltage;
 
-                var checkVoltage = (newAverageVoltage - cuttOfvoltage)*0.1;
+                var checkVoltage = (newAverageVoltage - cuttOfvoltage)* (1 - _countermeasuresArgs.detectPercent);
 
                 var finalCheckVoltage = newAverageVoltage - checkVoltage;
 
@@ -65,17 +65,18 @@ namespace D3vS1m.Application.AttackWpan
                 //if (currentCharge < newCheckCharge)
                 {
 
-                  
+
+
                     if (_countermeasuresArgs.applyCountermeasure)
                     {
                         d.Controls.Off();
                     }
-                    //if (_countermeasuresArgs.generateAlert)
-                    //{
-                    //    Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
-                    //}
-                
-                    Log.Info($"Device turned off countermeasureApplied");
+                    if (_countermeasuresArgs.generateAlert)
+                    {
+                        Log.Info($"Alert!!! Attack detected::'{_countermeasuresArgs.responsibleStakeholder}':Please Check!!!'");
+                    }
+
+                    //Log.Info($"Device turned off countermeasureApplied");
 
                 }
             });

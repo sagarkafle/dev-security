@@ -1,0 +1,4 @@
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp2.0\D3vS1m.Application.AttackWpan.Test.csprojAssemblyReference.cache
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp2.0\D3vS1m.Application.AttackWpan.Test.AssemblyInfoInputs.cache
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp2.0\D3vS1m.Application.AttackWpan.Test.AssemblyInfo.cs
+C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\obj\Debug\netcoreapp2.0\D3vS1m.Application.AttackWpan.Test.csproj.CoreCompileInputs.cache

@@ -22,7 +22,7 @@ using System.Reflection;
 namespace D3vS1m.Application.AttackWpan.Test
 {
 	[TestClass]
-	public class SimpleTest : TestBase
+	public class SimulationTest : TestBase
 	{
 		private PeerToPeerNetwork _network;
         private BatteryPack _battery;
@@ -79,28 +79,26 @@ namespace D3vS1m.Application.AttackWpan.Test
 			var victimNodeName = "victimNode";
 			var normalNodeName = "Anchor_1";
 
-
-			//result filenames 
-			var victimNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputVictimNode.csv";
-			var normalNodeResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\outputNormalNode.csv";
-			var VoltageCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateVOltageCOnsumption.csv";
-			var ChargeCOnsumptionResultFilePath = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\output\CurrentStateChargeCOnsumption.csv";
-
+			//Loading config file 
 			ExeConfigurationFileMap map = new ExeConfigurationFileMap();
-			map.ExeConfigFilename = @"C:\Users\nepho\source\repos\dev-security\D3vS1m.Application.AttackWpan\D3vS1m.Application.AttackWpan.Test\App.config";
+			map.ExeConfigFilename = @"..\\..\\..\\App.config";
 			Configuration config =
 			   ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
 
 			var getValFromconfig = config.AppSettings;
 
-            var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
+			var attackNameFromConfigFile = getValFromconfig.Settings["AttackName"].Value;
+
+
+			//result filenames 
+			var VoltageCOnsumptionResultFilePath = getValFromconfig.Settings["voltageOutputFilePath"].Value;
+			var ChargeCOnsumptionResultFilePath = getValFromconfig.Settings["ChargeOutputFilePath"].Value;
+
 			
 
 			var runtime = new RuntimeController(new BasicValidator());
 			var repo = new SimulatorRepository();
 			var attackArgument = new AttackWpanArgs();
-			attackArgument.victimNoderesultFilePath = victimNodeResultFilePath;
-			attackArgument.normalNoderesultFilePath = normalNodeResultFilePath;
 			attackArgument.CurrentStateVoltageCOnsumptionCsvFilePath = VoltageCOnsumptionResultFilePath;
 			attackArgument.CurrentStateChargeCOnsumptionCsvFilePath = ChargeCOnsumptionResultFilePath;
 			attackArgument.attackName = "BatteryExhaustionAttack";
@@ -111,9 +109,18 @@ namespace D3vS1m.Application.AttackWpan.Test
 
 			var countermeasuresArgument = new CountermeasureWpanArgs();
 			countermeasuresArgument.applyCountermeasure = false;
-            if (getValFromconfig.Settings["applyCountermeasures"].Value == "TRUE")
+			countermeasuresArgument.generateAlert = false;
+			countermeasuresArgument.responsibleStakeholder = getValFromconfig.Settings["responsibleStakeholder"].Value;
+			countermeasuresArgument.detectPercent = float.Parse(getValFromconfig.Settings["detectPercent"].Value);
+
+
+			if (getValFromconfig.Settings["applyCountermeasures"].Value == "TRUE")
             {
 				countermeasuresArgument.applyCountermeasure = true;
+			}
+            if (getValFromconfig.Settings["generateAlert"].Value == "TRUE")
+			{
+				countermeasuresArgument.generateAlert = true;
 			}
 
            
